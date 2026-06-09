@@ -47,3 +47,30 @@ html, body {
 .marquee-container:hover .animate-marquee-ltr {
   animation-play-state: paused;
 }
+
+/* Light Theme (Default) */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #333333;
+  --header-bg: #f8f9fa;
+  --button-bg: #e2e8f0;
+  --button-text: #1a202c;
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+  --bg-color: #121212;
+  --text-color: #e0e0e0;
+  --header-bg: #1f1f1f;
+  --button-bg: #2d3748;
+  --button-text: #ffffff;
+}
+
+/* Apply the variables to the body */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+  margin: 0;
+  font-family: sans-serif;
+}
