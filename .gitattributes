@@ -1,0 +1,5 @@
+# Tell Linguist to ignore HTML files when detecting the repo language
+*.html linguist-detectable=false
+
+# Ensure JavaScript files are counted
+*.js linguist-detectable=true
