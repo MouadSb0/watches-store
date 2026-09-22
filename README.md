@@ -1,4 +1,4 @@
-# VANGO — Luxury Watches E-Commerce Platform
+# VANGO - Luxury Watches E-Commerce Platform
 
 ![React](https://img.shields.io/badge/React-20232A?style=flat-square&logo=react&logoColor=61DAFB)
 ![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat-square&logo=vite&logoColor=white)
@@ -9,7 +9,8 @@ A premium e-commerce storefront for luxury watches, built as a modern Single Pag
 
 **[Live Demo](https://mouadsbaer.github.io/watches-store/)**
 
-![VANGO storefront screenshot](./docs/screenshot-home.png)
+<img width="1897" height="902" alt="Image" src="https://github.com/user-attachments/assets/e6c57e41-dfe2-43de-83ed-34f2c0c1c2c7" />
+<img width="1917" height="901" alt="Image" src="https://github.com/user-attachments/assets/af08e46a-53c7-4345-84fa-2673c82c8e12" />
 
 ---
 
