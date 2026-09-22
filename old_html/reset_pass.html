@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Reset Password - VANGO</title>
+<!-- Material Symbols for Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Montserrat and Inter -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS with Forms and Container Queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#ffffff",
+                        "on-background": "#1b1c1c",
+                        "on-tertiary-container": "#838484",
+                        "tertiary": "#000000",
+                        "secondary": "#775a19",
+                        "surface-container-highest": "#e4e2e2",
+                        "on-surface": "#1b1c1c",
+                        "surface-tint": "#5f5e5e",
+                        "primary-container": "#1c1b1b",
+                        "surface-container-high": "#e9e8e7",
+                        "on-primary-fixed-variant": "#474746",
+                        "on-primary-fixed": "#1c1b1b",
+                        "inverse-on-surface": "#f2f0f0",
+                        "surface-bright": "#fbf9f8",
+                        "secondary-fixed-dim": "#e9c176",
+                        "on-primary-container": "#858383",
+                        "surface-variant": "#e4e2e2",
+                        "on-secondary-fixed-variant": "#5d4201",
+                        "primary": "#000000",
+                        "tertiary-container": "#1a1c1c",
+                        "outline": "#747878",
+                        "surface-container-low": "#f5f3f3",
+                        "inverse-primary": "#c8c6c5",
+                        "secondary-container": "#fed488",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "surface": "#fbf9f8",
+                        "surface-dim": "#dbdad9",
+                        "on-tertiary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-surface-variant": "#444748",
+                        "on-error-container": "#93000a",
+                        "on-secondary-container": "#785a1a",
+                        "primary-fixed-dim": "#c8c6c5",
+                        "on-primary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "inverse-surface": "#303031",
+                        "background": "#fbf9f8",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "tertiary-fixed-dim": "#c6c6c7",
+                        "primary-fixed": "#e5e2e1",
+                        "on-secondary-fixed": "#261900",
+                        "surface-container": "#efeded",
+                        "secondary-fixed": "#ffdea5",
+                        "tertiary-fixed": "#e2e2e2",
+                        "outline-variant": "#c4c7c7"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0",
+                        "lg": "0",
+                        "xl": "0",
+                        "full": "0"
+                    },
+                    "spacing": {
+                        "margin-desktop": "64px",
+                        "gutter": "24px",
+                        "section-padding": "120px",
+                        "unit": "8px",
+                        "margin-mobile": "20px",
+                        "container-max": "1440px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Montserrat"],
+                        "headline-lg-mobile": ["Montserrat"],
+                        "price-display": ["Montserrat"],
+                        "label-caps": ["Inter"],
+                        "headline-md": ["Montserrat"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "display-xl": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["40px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["32px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "price-display": ["20px", { "lineHeight": "1", "letterSpacing": "0", "fontWeight": "500" }],
+                        "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.2em", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "letterSpacing": "0.1em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "display-xl": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Base styles */
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-background');
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* Material Symbols Outlined */
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Input Field Focus Remove Default Ring */
+        input:focus {
+            outline: none !important;
+            box-shadow: none !important;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="flex flex-col min-h-screen">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-on-background fixed top-0 w-full z-50 border-b border-outline dark:border-on-surface-variant">
+<div class="flex items-center justify-between px-margin-mobile md:px-margin-desktop h-16 w-full max-w-container-max mx-auto">
+<!-- Leading Action -->
+<button aria-label="Go back" class="cursor-pointer active:scale-95 text-primary dark:text-on-primary hover:opacity-70 transition-opacity duration-200">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<!-- Brand Logo -->
+<div class="text-center flex-grow">
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-surface-bright tracking-[0.2em] uppercase">
+                    VANGO
+                </h1>
+</div>
+<!-- Trailing Action (Empty space to balance the header) -->
+<div class="w-6"></div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex items-center justify-center pt-24 pb-section-padding px-margin-mobile md:px-margin-desktop w-full max-w-container-max mx-auto">
+<div class="w-full max-w-[480px] flex flex-col gap-12">
+<!-- Header Section -->
+<div class="flex flex-col gap-4 text-center md:text-left">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary">NEW PASSWORD</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Create a secure new password for your VANGO account.</p>
+</div>
+<!-- Form Section -->
+<form action="#" class="flex flex-col gap-8 w-full" method="POST">
+<!-- Input Group: New Password -->
+<div class="relative w-full group">
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-2" for="new-password">NEW PASSWORD</label>
+<input class="w-full bg-transparent border-0 border-b border-primary text-primary font-body-lg text-body-lg p-0 py-2 placeholder-on-surface-variant/50 focus:border-b-2 transition-colors duration-200" id="new-password" name="new-password" placeholder="Enter new password" required="" type="password"/>
+<button class="absolute right-0 bottom-2 text-on-surface-variant hover:text-primary transition-colors cursor-pointer" onclick="togglePassword('new-password')" type="button">
+<span class="material-symbols-outlined text-[20px]" id="icon-new-password">visibility</span>
+</button>
+</div>
+<!-- Input Group: Confirm Password -->
+<div class="relative w-full group">
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-2" for="confirm-password">CONFIRM PASSWORD</label>
+<input class="w-full bg-transparent border-0 border-b border-primary text-primary font-body-lg text-body-lg p-0 py-2 placeholder-on-surface-variant/50 focus:border-b-2 transition-colors duration-200" id="confirm-password" name="confirm-password" placeholder="Confirm new password" required="" type="password"/>
+<button class="absolute right-0 bottom-2 text-on-surface-variant hover:text-primary transition-colors cursor-pointer" onclick="togglePassword('confirm-password')" type="button">
+<span class="material-symbols-outlined text-[20px]" id="icon-confirm-password">visibility</span>
+</button>
+</div>
+<!-- Password Requirements Checklist -->
+<div class="flex flex-col gap-2 mt-2">
+<p class="font-label-caps text-label-caps text-on-surface-variant">PASSWORD MUST CONTAIN:</p>
+<ul class="flex flex-col gap-1">
+<li class="flex items-center gap-2 font-body-md text-[14px] text-on-surface-variant" id="req-length">
+<span class="material-symbols-outlined text-[16px]">check_circle</span> 8+ characters
+                        </li>
+<li class="flex items-center gap-2 font-body-md text-[14px] text-on-surface-variant" id="req-uppercase">
+<span class="material-symbols-outlined text-[16px]">check_circle</span> One uppercase letter
+                        </li>
+<li class="flex items-center gap-2 font-body-md text-[14px] text-on-surface-variant" id="req-number">
+<span class="material-symbols-outlined text-[16px]">check_circle</span> One number
+                        </li>
+</ul>
+</div>
+<!-- Action Button -->
+<button class="w-full flex items-center justify-between bg-primary text-on-primary font-label-caps text-label-caps px-6 py-4 hover:bg-[#C5A059] transition-colors duration-300 mt-4 cursor-pointer" type="submit">
+<span>UPDATE PASSWORD</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</form>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface dark:bg-on-background w-full border-t border-outline dark:border-on-surface-variant mt-auto">
+<div class="flex flex-col md:flex-row justify-between items-center py-10 px-margin-mobile md:px-margin-desktop gap-gutter w-full max-w-container-max mx-auto">
+<div class="font-headline-md text-[18px] font-bold text-primary dark:text-surface-bright uppercase tracking-[0.2em]">
+                VANGO
+            </div>
+<nav class="flex gap-8">
+<a class="font-label-caps text-label-caps text-on-surface-variant dark:text-outline-variant hover:text-secondary dark:hover:text-secondary-fixed transition-colors duration-300 cursor-pointer" href="#">PRIVACY</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant dark:text-outline-variant hover:text-secondary dark:hover:text-secondary-fixed transition-colors duration-300 cursor-pointer" href="#">TERMS</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant dark:text-outline-variant hover:text-secondary dark:hover:text-secondary-fixed transition-colors duration-300 cursor-pointer" href="#">CONTACT</a>
+</nav>
+<div class="font-label-caps text-label-caps text-on-surface-variant dark:text-outline-variant text-center">
+                © 2024 VANGO HOROLOGY. ALL RIGHTS RESERVED.
+            </div>
+</div>
+</footer>
+<!-- Interactive Scripts -->
+<script>
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            const icon = document.getElementById('icon-' + inputId);
+            if (input.type === "password") {
+                input.type = "text";
+                icon.textContent = "visibility_off";
+            } else {
+                input.type = "password";
+                icon.textContent = "visibility";
+            }
+        }
+        
+        // Simple client-side validation styling for the checklist
+        const newPasswordInput = document.getElementById('new-password');
+        
+        newPasswordInput.addEventListener('input', function() {
+            const val = this.value;
+            
+            const reqLength = document.getElementById('req-length');
+            const reqUppercase = document.getElementById('req-uppercase');
+            const reqNumber = document.getElementById('req-number');
+            
+            // Length
+            if (val.length >= 8) {
+                reqLength.classList.remove('text-on-surface-variant');
+                reqLength.classList.add('text-[#000000]');
+                reqLength.querySelector('span').classList.add('text-[#C5A059]');
+                reqLength.querySelector('span').style.fontVariationSettings = "'FILL' 1";
+            } else {
+                reqLength.classList.add('text-on-surface-variant');
+                reqLength.classList.remove('text-[#000000]');
+                reqLength.querySelector('span').classList.remove('text-[#C5A059]');
+                reqLength.querySelector('span').style.fontVariationSettings = "'FILL' 0";
+            }
+            
+            // Uppercase
+            if (/[A-Z]/.test(val)) {
+                reqUppercase.classList.remove('text-on-surface-variant');
+                reqUppercase.classList.add('text-[#000000]');
+                reqUppercase.querySelector('span').classList.add('text-[#C5A059]');
+                reqUppercase.querySelector('span').style.fontVariationSettings = "'FILL' 1";
+            } else {
+                reqUppercase.classList.add('text-on-surface-variant');
+                reqUppercase.classList.remove('text-[#000000]');
+                reqUppercase.querySelector('span').classList.remove('text-[#C5A059]');
+                reqUppercase.querySelector('span').style.fontVariationSettings = "'FILL' 0";
+            }
+            
+            // Number
+            if (/[0-9]/.test(val)) {
+                reqNumber.classList.remove('text-on-surface-variant');
+                reqNumber.classList.add('text-[#000000]');
+                reqNumber.querySelector('span').classList.add('text-[#C5A059]');
+                reqNumber.querySelector('span').style.fontVariationSettings = "'FILL' 1";
+            } else {
+                reqNumber.classList.add('text-on-surface-variant');
+                reqNumber.classList.remove('text-[#000000]');
+                reqNumber.querySelector('span').classList.remove('text-[#C5A059]');
+                reqNumber.querySelector('span').style.fontVariationSettings = "'FILL' 0";
+            }
+        });
+    </script>
+</body></html>

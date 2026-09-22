@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VANGO - Journal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Montserrat:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline-variant": "#c4c7c7",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "surface-container-high": "#e9e8e7",
+                        "inverse-surface": "#303031",
+                        "on-surface": "#1b1c1c",
+                        "surface-bright": "#fbf9f8",
+                        "secondary-fixed-dim": "#e9c176",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed": "#e2e2e2",
+                        "tertiary": "#000000",
+                        "surface-container-low": "#f5f3f3",
+                        "surface-container": "#efeded",
+                        "tertiary-container": "#1a1c1c",
+                        "secondary-fixed": "#ffdea5",
+                        "surface-variant": "#e4e2e2",
+                        "background": "#fbf9f8",
+                        "primary-fixed-dim": "#c8c6c5",
+                        "on-primary-container": "#858383",
+                        "error": "#ba1a1a",
+                        "outline": "#747878",
+                        "surface-container-highest": "#e4e2e2",
+                        "tertiary-fixed-dim": "#c6c6c7",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "secondary-container": "#fed488",
+                        "surface-dim": "#dbdad9",
+                        "on-tertiary-container": "#838484",
+                        "inverse-primary": "#c8c6c5",
+                        "on-secondary-fixed-variant": "#5d4201",
+                        "error-container": "#ffdad6",
+                        "primary-container": "#1c1b1b",
+                        "on-primary-fixed": "#1c1b1b",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "on-secondary-container": "#785a1a",
+                        "on-error": "#ffffff",
+                        "on-surface-variant": "#444748",
+                        "primary": "#000000",
+                        "on-error-container": "#93000a",
+                        "surface-tint": "#5f5e5e",
+                        "primary-fixed": "#e5e2e1",
+                        "on-primary-fixed-variant": "#474746",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#1b1c1c",
+                        "on-secondary-fixed": "#261900",
+                        "surface": "#fbf9f8",
+                        "inverse-on-surface": "#f2f0f0",
+                        "secondary": "#775a19"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "20px",
+                        "margin-desktop": "64px",
+                        "container-max": "1440px",
+                        "section-padding": "120px",
+                        "gutter": "24px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Inter"],
+                        "headline-lg": ["Montserrat"],
+                        "price-display": ["Montserrat"],
+                        "display-xl": ["Montserrat"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Montserrat"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.2em", "fontWeight": "600" }],
+                        "headline-lg": ["40px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "price-display": ["20px", { "lineHeight": "1", "letterSpacing": "0", "fontWeight": "500" }],
+                        "display-xl": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["32px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "letterSpacing": "0.1em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Razor-sharp aesthetic */
+        * { border-radius: 0 !important; }
+        
+        .nav-drawer {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        .nav-drawer.open {
+            transform: translateX(0);
+        }
+        .overlay {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .overlay.open {
+            opacity: 0.5;
+            pointer-events: auto;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="text-white font-headline-md text-headline-md font-label-caps text-label-caps docked full-width top-0 border-b border-outline-variant dark:border-outline flat no shadows sticky z-50" style="background: linear-gradient(to right, #1F2226, #2A2D32);">
+<div class="flex justify-between items-center px-margin-mobile h-24 w-full max-w-container-max mx-auto md:px-margin-desktop relative md:gap-12"><!-- Mobile Menu (Left on mobile) -->
+<div class="md:hidden">
+<span class="material-symbols-outlined text-white hover:text-secondary transition-colors cursor-pointer" data-icon="menu">menu</span>
+</div>
+<!-- Logo (Left on desktop) -->
+<div class="font-headline-md text-headline-md tracking-tighter font-bold text-white flex items-center gap-2 scale-90">
+<img src="imgs/logo_axios.png" alt="Axios Logo" class="h-32">
+</div>
+<!-- Desktop Nav Links (Centered) -->
+<nav class="hidden md:flex items-center h-full justify-center flex-1 md:gap-12">
+<a class="font-label-caps text-label-caps text-white hover:text-secondary transition-colors h-full flex items-center" href="index.html">HOME</a>
+<a class="font-label-caps text-label-caps text-white hover:text-secondary transition-colors h-full flex items-center" href="all_collections.html">SHOP</a>
+<a class="font-label-caps text-label-caps text-white hover:text-secondary transition-colors h-full flex items-center" href="all_collections.html">PRODUCTS </a>
+<a class="font-label-caps text-label-caps text-white border-b-2 border-white h-full flex items-center pt-[2px]" href="jornal.html">BLOG</a>
+</nav>
+<!-- Action Icons (Right) -->
+<div class="flex items-center gap-4 text-white">
+<button class="bg-gray-800 border-2 border-[#c4c2c2] px-5 py-[11px] rounded-2xl text-white hover:border-none hover:bg-secondary hover:text-on-primary transition-colors duration-300" style="border-radius: 17px;">
+  Sign In
+</button>
+<span class="material-symbols-outlined text-white hover:text-secondary transition-colors cursor-pointer hidden md:block" data-icon="search">search</span>
+<span class="material-symbols-outlined text-white hover:text-secondary transition-colors cursor-pointer hidden md:block" data-icon="person">person</span>
+<span class="material-symbols-outlined text-white hover:text-secondary transition-colors cursor-pointer hidden md:block" data-icon="favorite">favorite</span>
+<div class="relative cursor-pointer hover:text-secondary transition-colors">
+<span class="material-symbols-outlined text-white" data-icon="shopping_bag">shopping_bag</span>
+<span class="absolute -top-1 -right-1 bg-secondary text-on-secondary text-[10px] w-4 h-4 flex items-center justify-center rounded-full font-bold">2</span>
+</div>
+</div></div>
+</header>
+<!-- NavigationDrawer Overlay -->
+<div class="overlay fixed inset-0 bg-primary z-40" id="nav-overlay"></div>
+<!-- NavigationDrawer -->
+<aside class="nav-drawer fixed inset-y-0 left-0 w-80 bg-surface dark:bg-surface border-r border-primary dark:border-outline-variant z-50 flex flex-col h-full p-gutter" id="nav-drawer">
+<div class="flex justify-between items-center mb-section-padding">
+<div class="font-headline-md text-headline-md text-primary dark:text-on-surface uppercase">
+                VANGO
+            </div>
+<button class="cursor-pointer hover:text-secondary transition-colors" id="close-menu-btn">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<nav class="flex flex-col gap-6">
+<a class="flex items-center gap-4 text-on-surface dark:text-on-surface-variant hover:bg-surface-variant dark:hover:bg-tertiary-container transition-all p-2 cursor-pointer active:translate-x-1" href="#">
+<span class="material-symbols-outlined">watch</span>
+<span class="font-label-caps text-label-caps uppercase">Collections</span>
+</a>
+<a class="flex items-center gap-4 bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-container hover:bg-surface-variant dark:hover:bg-tertiary-container transition-all p-2 cursor-pointer active:translate-x-1" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="font-label-caps text-label-caps uppercase">Heritage</span>
+</a>
+<a class="flex items-center gap-4 text-on-surface dark:text-on-surface-variant hover:bg-surface-variant dark:hover:bg-tertiary-container transition-all p-2 cursor-pointer active:translate-x-1" href="#">
+<span class="material-symbols-outlined">auto_awesome</span>
+<span class="font-label-caps text-label-caps uppercase">Bespoke</span>
+</a>
+<a class="flex items-center gap-4 text-on-surface dark:text-on-surface-variant hover:bg-surface-variant dark:hover:bg-tertiary-container transition-all p-2 cursor-pointer active:translate-x-1" href="#">
+<span class="material-symbols-outlined">help_outline</span>
+<span class="font-label-caps text-label-caps uppercase">Support</span>
+</a>
+</nav>
+</aside>
+<!-- Main Content -->
+<main class="flex-grow w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-section-padding space-y-section-padding">
+<!-- Header -->
+<div class="text-center space-y-4">
+<h1 class="font-display-xl text-headline-lg-mobile md:text-display-xl uppercase text-primary">Journal</h1>
+<p class="font-body-lg text-body-lg text-outline max-w-2xl mx-auto">Stories, insights, and editorial explorations into the art of horology and the VANGO heritage.</p>
+</div>
+<!-- Featured Article -->
+<article class="grid grid-cols-1 md:grid-cols-12 gap-gutter group cursor-pointer">
+<div class="md:col-span-8 overflow-hidden bg-surface-container-high h-[400px] md:h-[600px] relative">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="A highly detailed close-up shot of a complex mechanical watch movement. Gears, springs, and ruby jewels are visible in sharp focus. The lighting is dramatic and moody, with high contrast highlighting the polished steel and brass components. The style is hyper-realistic luxury product photography, evoking precision and heritage in a sleek, modern light-mode context." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDdrjLJCKGnWlnWuFR5Oj1UXnkppmQKBtGscjBhLA6AJJrjFiXTu_tJjtAyxFYZ5pVuRDF1hzxE0memtFTNblubH9VkKsj2A_6itnNX4n0Nj_Vxz0FA9r4RXUIJuYDosuxvPZlxSpIVOQWUNYLYljsOdP4BCnNZJ2qhZ3JQzDdaaCW8Z68siMdH5bGJR0MMdhPV5_W2SNE20wND9Y-R577x0ryJsukGFaoqpjvqllKqUlN6_UotxD-i')"></div>
+</div>
+<div class="md:col-span-4 flex flex-col justify-center space-y-6 md:pl-gutter pt-8 md:pt-0">
+<span class="font-label-caps text-label-caps text-outline uppercase tracking-widest border-b border-primary w-max pb-1">Technical</span>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary uppercase group-hover:text-secondary transition-colors duration-300">The Soul of Mechanical Movement</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">An exploration into the intricate ballet of gears and springs that define the heartbeat of a true luxury timepiece. We delve into the craftsmanship that transcends generations.</p>
+<div class="pt-4">
+<span class="font-label-caps text-label-caps text-primary uppercase flex items-center gap-2 group-hover:text-secondary transition-colors duration-300">
+                        Read Article <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</span>
+</div>
+</div>
+</article>
+<!-- Divider -->
+<div class="w-full border-t border-outline-variant h-px"></div>
+<!-- Article Grid -->
+<section>
+<div class="flex justify-between items-end mb-12">
+<h3 class="font-headline-md text-headline-md text-primary uppercase">Recent Articles</h3>
+<div class="hidden md:flex gap-4">
+<button class="font-label-caps text-label-caps text-primary border-b border-primary pb-1">All</button>
+<button class="font-label-caps text-label-caps text-outline hover:text-primary transition-colors pb-1">Heritage</button>
+<button class="font-label-caps text-label-caps text-outline hover:text-primary transition-colors pb-1">Lifestyle</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Article 1 -->
+<article class="group cursor-pointer flex flex-col gap-4">
+<div class="bg-surface-container-high h-[300px] overflow-hidden relative">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="A pristine, minimalist flat lay composition featuring an elegant automatic dress watch resting on a textured concrete surface. Surrounding the watch are subtle elements like a fine leather strap, a loupe, and scattered watchmaker tools. The lighting is soft, diffused, and bright, fitting a high-end luxury lifestyle editorial in a clean, high-contrast light mode design." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAwBFE383jEl0KDnzyiFNXgubuNkpr9nb-6fYaxoeCx2RVAMRlzxytYgIU6LEFoDLj56tUSPgm8egJP7sYXGbxgzbTQx2ReD2y6bJvj7eHIZHTJ6PhO5Q2plf2B0c_cHYOSYXqgZC0fe-DWSv9hPgsIwhS_1CSEZs9kdHdmga2OcL2P3lVRz0-VlM8ixqYWPC9dcx070cd6oJaq2x74Z_xEW5VnupIbGiCuHYMu-WLtHDUBciw5AVSs')"></div>
+</div>
+<div class="space-y-2">
+<span class="font-label-caps text-label-caps text-outline uppercase tracking-widest">Heritage</span>
+<h4 class="font-headline-md text-headline-md text-primary uppercase group-hover:text-secondary transition-colors duration-300 line-clamp-2">How to Choose Your First Automatic Watch</h4>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-3">Navigating the world of horology can be daunting. A guide to understanding what makes an automatic watch a worthy investment.</p>
+</div>
+</article>
+<!-- Article 2 -->
+<article class="group cursor-pointer flex flex-col gap-4">
+<div class="bg-surface-container-high h-[300px] overflow-hidden relative">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="A striking historical archive photo style image of an early 20th-century aviator's chronograph watch. The watch is presented against a stark white background with a sharp, deep black shadow, emphasizing its geometric case and intricate dial. The aesthetic is stark, graphic, and highly editorial, echoing vintage luxury catalogs with modern minimalist precision." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDn0fyCHGjvHA4vz4Iu3-YI1UwMXkZONEl9nKgb_Z3aHlHAO8pSnGQVGv_8AdDCJ3UZWaupxT4EpjueJJO1ARmEa9OoEZm_Rk9e-V_4bAUfdZEoDgTtoMGkqiWjXi3xzsFV8cTvAc8WagMvkOP1hnT-KXe6iKNYjlZbakt7j9AB7VkDboNYg7TVcW-7q0zrIytKclIdqnCaqJsa-QKzw5KEMePnn8-MBqzWFzLJH2lqK2GFPcbHUsIq')"></div>
+</div>
+<div class="space-y-2">
+<span class="font-label-caps text-label-caps text-outline uppercase tracking-widest">Technical</span>
+<h4 class="font-headline-md text-headline-md text-primary uppercase group-hover:text-secondary transition-colors duration-300 line-clamp-2">The History of the Chronograph</h4>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-3">Tracing the evolution of the chronograph from its origins in horse racing to its vital role in aviation and space exploration.</p>
+</div>
+</article>
+<!-- Article 3 -->
+<article class="group cursor-pointer flex flex-col gap-4">
+<div class="bg-surface-container-high h-[300px] overflow-hidden relative">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="A sophisticated lifestyle shot showing a wrist wearing a sleek, modern luxury sports watch, resting on the steering wheel of a classic vintage sports car. The focus is sharp on the watch face, with the leather interior blurred in the background. The color palette features deep charcoal, brushed steel, and warm sunlight, conveying exclusivity and timeless elegance." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCqwF_R-LPWcqMjSbjKXpsW3PKC1o_CRpOU56txELS4To_I_vLkr7oVP47bpszVCfPpGOSCA5AhFx5ty0k_CXg346t_EzshfOjuItLiGOWVM4op25qPZuPj_o8v3H-U6-TVw0kmucxrWZsJAngYddMTp69-0FAFkIcA6XTJCKTw-KM3WFPecQ63RlXw2ArIQAQdZu9vxZwn_H8CujdxjBZ0fjqnr7MzXukrpifpRvgMfbfoMRMJOM8c')"></div>
+</div>
+<div class="space-y-2">
+<span class="font-label-caps text-label-caps text-outline uppercase tracking-widest">Lifestyle</span>
+<h4 class="font-headline-md text-headline-md text-primary uppercase group-hover:text-secondary transition-colors duration-300 line-clamp-2">Time and Motion: The Art of Driving</h4>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-3">Exploring the enduring connection between classic automobiles and mechanical timepieces. A journey through design and performance.</p>
+</div>
+</article>
+</div>
+<div class="mt-16 flex justify-center">
+<button class="border border-primary px-8 py-4 font-label-caps text-label-caps text-primary uppercase hover:bg-primary hover:text-on-primary transition-colors duration-300">
+                    Load More
+                </button>
+</div>
+</section>
+<!-- Newsletter Signup (Bento/Asymmetric Style) -->
+<section class="grid grid-cols-1 md:grid-cols-12 bg-surface-container-high mt-section-padding">
+<div class="md:col-span-5 bg-primary text-on-primary p-margin-mobile md:p-margin-desktop flex flex-col justify-center space-y-6">
+<h3 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg uppercase">Join The Inner Circle</h3>
+<p class="font-body-md text-body-md text-on-primary/80">Subscribe to receive exclusive editorial content, early access to new collections, and invitations to private events.</p>
+</div>
+<div class="md:col-span-7 p-margin-mobile md:p-margin-desktop flex flex-col justify-center items-center">
+<form class="w-full max-w-md space-y-8">
+<div class="relative">
+<input class="w-full bg-transparent border-0 border-b border-primary focus:ring-0 focus:border-secondary px-0 py-2 font-label-caps text-label-caps text-primary placeholder:text-outline transition-colors" placeholder="YOUR EMAIL ADDRESS" required="" type="email"/>
+</div>
+<button class="w-full bg-primary text-on-primary font-label-caps text-label-caps uppercase py-4 hover:bg-secondary transition-colors duration-300" type="submit">
+                        Subscribe
+                    </button>
+</form>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-primary text-on-primary py-16 md:py-20 border-t border-outline-variant">
+    <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+            <!-- Brand Section -->
+            <div class="flex flex-col gap-6">
+                <div class="font-headline-md text-headline-md tracking-tighter font-bold flex items-center gap-2">
+                    <img src="imgs/logo_axios.png" alt="Axios Logo" class="h-28">
+                </div>
+                <p class="font-body-md text-body-md text-surface-variant opacity-80 max-w-xs">
+                    Transparently building high-quality minimal watches from the finest components and materials.
+                </p>
+            </div>
+
+            <!-- Navigation Columns -->
+            <div class="grid grid-cols-2 md:grid-cols-3 col-span-1 md:col-span-2 gap-8">
+                <div class="flex flex-col gap-4">
+                    <h4 class="font-label-caps text-label-caps tracking-widest uppercase text-secondary">Shop</h4>
+                    <nav class="flex flex-col gap-2">
+                        <a href="#" class="text-surface-variant hover:text-on-primary transition-colors text-sm">Best Sellers</a>
+                        <a href="#" class="text-surface-variant hover:text-on-primary transition-colors text-sm">New Arrivals</a>
+                        <a href="#" class="text-surface-variant hover:text-on-primary transition-colors text-sm">Vintage</a>
+                        <a href="#" class="text-surface-variant hover:text-on-primary transition-colors text-sm">Swiss Essence</a>
+                    </nav>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <h4 class="font-label-caps text-label-caps tracking-widest uppercase text-secondary">Support</h4>
+                    <nav class="flex flex-col gap-2">
+                        <a href="#" class="text-surface-variant hover:text-on-primary transition-colors text-sm">Shipping</a>
+                        <a href="#" class="text-surface-variant hover:text-on-primary transition-colors text-sm">Returns</a>
+                        <a href="#" class="text-surface-variant hover:text-on-primary transition-colors text-sm">Warranty</a>
+                        <a href="#" class="text-surface-variant hover:text-on-primary transition-colors text-sm">Contact Us</a>
+                    </nav>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <h4 class="font-label-caps text-label-caps tracking-widest uppercase text-secondary">Company</h4>
+                    <nav class="flex flex-col gap-2">
+                        <a href="#" class="text-surface-variant hover:text-on-primary transition-colors text-sm">Our Story</a>
+                        <a href="#" class="text-surface-variant hover:text-on-primary transition-colors text-sm">Sustainability</a>
+                        <a href="#" class="text-surface-variant hover:text-on-primary transition-colors text-sm">Careers</a>
+                    </nav>
+                </div>
+            </div>
+
+            <!-- Newsletter Section -->
+            <div class="flex flex-col gap-6">
+                <h4 class="font-label-caps text-label-caps tracking-widest uppercase text-secondary">Join our newsletter</h4>
+                <div class="flex flex-col gap-4">
+                    <div class="relative">
+                        <input type="email" placeholder="Email Address" class="w-full bg-transparent border-b border-outline-variant py-2 text-on-primary placeholder:text-surface-variant/50 focus:outline-none focus:border-secondary transition-colors">
+                    </div>
+                    <button class="bg-on-primary text-primary font-label-caps text-label-caps py-3 px-6 uppercase tracking-widest hover:bg-secondary hover:text-on-primary transition-colors">
+                        Subscribe
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Bar -->
+        <div class="pt-8 border-t border-outline-variant/20 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex flex-col md:flex-row items-center gap-4 md:gap-8">
+                <span class="text-[12px] text-surface-variant opacity-60">© 2024 VANGO. All rights reserved.</span>
+                <div class="flex gap-4">
+                    <a href="#" class="text-[12px] text-surface-variant hover:text-on-primary transition-colors">Privacy Policy</a>
+                    <a href="#" class="text-[12px] text-surface-variant hover:text-on-primary transition-colors">Terms of Service</a>
+                </div>
+            </div>
+            <div class="flex gap-6">
+                <a href="#" class="text-on-primary hover:text-secondary transition-colors"><span class="material-symbols-outlined text-[20px]">public</span></a>
+                <a href="#" class="text-on-primary hover:text-secondary transition-colors"><span class="material-symbols-outlined text-[20px]">share</span></a>
+                <a href="#" class="text-on-primary hover:text-secondary transition-colors"><span class="material-symbols-outlined text-[20px]">alternate_email</span></a>
+                <a href="#" class="text-on-primary hover:text-secondary transition-colors"><span class="material-symbols-outlined text-[20px]">camera</span></a>
+            </div>
+        </div>
+    </div>
+</footer>
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuBtn = document.getElementById('menu-btn');
+            const closeBtn = document.getElementById('close-menu-btn');
+            const navDrawer = document.getElementById('nav-drawer');
+            const overlay = document.getElementById('nav-overlay');
+
+            function toggleMenu() {
+                navDrawer.classList.toggle('open');
+                overlay.classList.toggle('open');
+                document.body.style.overflow = navDrawer.classList.contains('open') ? 'hidden' : '';
+            }
+
+            menuBtn.addEventListener('click', toggleMenu);
+            closeBtn.addEventListener('click', toggleMenu);
+            overlay.addEventListener('click', toggleMenu);
+        });
+    </script>
+</body></html>

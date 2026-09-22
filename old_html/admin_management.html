@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Horologist Admin - Products</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&amp;family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "outline": "#747878",
+                        "tertiary-fixed-dim": "#c6c6c7",
+                        "primary-container": "#1c1b1b",
+                        "on-primary-fixed": "#1c1b1b",
+                        "surface-bright": "#fbf9f8",
+                        "on-primary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "secondary": "#775a19",
+                        "tertiary-fixed": "#e2e2e2",
+                        "on-tertiary-container": "#838484",
+                        "on-surface-variant": "#444748",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "surface-container-low": "#f5f3f3",
+                        "secondary-fixed": "#ffdea5",
+                        "surface-container-highest": "#e4e2e2",
+                        "tertiary": "#000000",
+                        "background": "#fbf9f8",
+                        "surface-container-high": "#e9e8e7",
+                        "surface-container-lowest": "#ffffff",
+                        "primary": "#000000",
+                        "secondary-container": "#fed488",
+                        "error": "#ba1a1a",
+                        "inverse-surface": "#303031",
+                        "outline-variant": "#c4c7c7",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "on-error-container": "#93000a",
+                        "tertiary-container": "#1a1c1c",
+                        "surface-variant": "#e4e2e2",
+                        "secondary-fixed-dim": "#e9c176",
+                        "on-secondary-fixed-variant": "#5d4201",
+                        "on-primary-fixed-variant": "#474746",
+                        "on-error": "#ffffff",
+                        "primary-fixed": "#e5e2e1",
+                        "on-secondary-fixed": "#261900",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-container": "#858383",
+                        "surface-dim": "#dbdad9",
+                        "on-background": "#1b1c1c",
+                        "on-secondary-container": "#785a1a",
+                        "surface": "#fbf9f8",
+                        "inverse-primary": "#c8c6c5",
+                        "surface-tint": "#5f5e5e",
+                        "surface-container": "#efeded",
+                        "on-surface": "#1b1c1c",
+                        "primary-fixed-dim": "#c8c6c5",
+                        "inverse-on-surface": "#f2f0f0",
+                        "on-secondary": "#ffffff"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0",
+                        "lg": "0",
+                        "xl": "0",
+                        "full": "0"
+                    },
+                    spacing: {
+                        "section-padding": "120px",
+                        "margin-mobile": "20px",
+                        "container-max": "1440px",
+                        "margin-desktop": "64px",
+                        "gutter": "24px",
+                        "unit": "8px"
+                    },
+                    fontFamily: {
+                        "body-md": ["Inter", "sans-serif"],
+                        "price-display": ["Montserrat", "sans-serif"],
+                        "body-lg": ["Inter", "sans-serif"],
+                        "headline-lg": ["Montserrat", "sans-serif"],
+                        "label-caps": ["Inter", "sans-serif"],
+                        "headline-md": ["Montserrat", "sans-serif"],
+                        "display-xl": ["Montserrat", "sans-serif"],
+                        "headline-lg-mobile": ["Montserrat", "sans-serif"]
+                    },
+                    fontSize: {
+                        "body-md": ["16px", { lineHeight: "1.6", fontWeight: "400" }],
+                        "price-display": ["20px", { lineHeight: "1", letterSpacing: "0", fontWeight: "500" }],
+                        "body-lg": ["18px", { lineHeight: "1.6", fontWeight: "400" }],
+                        "headline-lg": ["40px", { lineHeight: "1.2", letterSpacing: "0.05em", fontWeight: "700" }],
+                        "label-caps": ["12px", { lineHeight: "1", letterSpacing: "0.2em", fontWeight: "600" }],
+                        "headline-md": ["24px", { lineHeight: "1.3", letterSpacing: "0.1em", fontWeight: "600" }],
+                        "display-xl": ["64px", { lineHeight: "1.1", letterSpacing: "-0.02em", fontWeight: "700" }],
+                        "headline-lg-mobile": ["32px", { lineHeight: "1.2", letterSpacing: "0.05em", fontWeight: "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex font-body-md overflow-x-hidden">
+<!-- Navigation Drawer -->
+<nav class="hidden md:flex flex-col h-screen w-64 left-0 top-0 fixed border-r border-gray-800 bg-black py-8 space-y-4 z-40">
+<!-- Header -->
+<div class="px-gutter mb-12">
+<img src="imgs/logo_axios.png" alt="Axios Logo" class="h-30">
+</div>
+<!-- Navigation Links -->
+<div class="flex-1 space-y-2">
+<!-- Items mapped from JSON -->
+<a class="flex items-center space-x-4 px-gutter py-3 text-gray-300 hover:text-white hover:bg-gray-800 transition-all duration-200 ease-in-out font-label-caps text-label-caps cursor-pointer" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Analytics</span>
+</a>
+<a class="flex items-center space-x-4 px-gutter py-3 bg-white text-black font-bold hover:text-white hover:bg-gray-800 transition-all duration-200 ease-in-out font-label-caps text-label-caps cursor-pointer" href="#">
+<span class="material-symbols-outlined" data-icon="watch">watch</span>
+<span>Products</span>
+</a>
+<a class="flex items-center space-x-4 px-gutter py-3 text-gray-300 hover:text-white hover:bg-gray-800 transition-all duration-200 ease-in-out font-label-caps text-label-caps cursor-pointer" href="#">
+<span class="material-symbols-outlined" data-icon="local_shipping">local_shipping</span>
+<span>Orders</span>
+</a>
+<!-- Contextual Active Tab (Settings is a proxy for admin operations like Customer Management) -->
+<a class="flex items-center space-x-4 px-gutter py-3 text-gray-300 transition-all duration-200 ease-in-out font-label-caps text-label-caps cursor-pointer" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span>Customers</span>
+</a>
+<a class="flex items-center space-x-4 px-gutter py-3 text-gray-300 font-bold transition-all duration-200 ease-in-out font-label-caps text-label-caps cursor-pointer" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col md:ml-64 min-h-screen">
+<!-- TopAppBar -->
+<header class="w-full top-0 absolute flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 bg-black border-b border-gray-800">
+<!-- Leading (Mobile menu icon, hidden on desktop since drawer is fixed) -->
+<div aria-label="Menu" class="md:hidden flex items-center cursor-pointer active:opacity-80 text-white hover:bg-white/10 transition-colors p-2">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</div>
+<!-- Headline / Brand -->
+<div class="flex-1 md:flex-none flex md:block justify-center">
+</div>
+<!-- Trailing (Account Icon) -->
+<div aria-label="Account" class="flex items-center cursor-pointer active:opacity-80 text-white hover:bg-white/10 transition-colors p-2">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="flex-1 px-margin-mobile md:px-margin-desktop py-12 max-w-[container-max] mx-auto w-full pt-32">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
+<div>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary uppercase">Inventory</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2 max-w-2xl">Manage the collection catalog. View stock levels, update pricing, and manage product details with absolute precision.</p>
+</div>
+<button class="bg-primary text-on-primary font-label-caps text-label-caps px-8 py-4 uppercase tracking-widest hover:bg-secondary transition-colors flex items-center gap-2 border border-primary" id="open-modal-btn">
+<span class="material-symbols-outlined text-lg" data-icon="add">add</span>
+                    NEW TIMEPIECE
+                </button>
+</div>
+<!-- Toolbar & Search -->
+<div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4 border-b border-primary pb-4">
+<div class="w-full md:w-96 relative">
+<span class="material-symbols-outlined absolute left-0 top-1/2 -translate-y-1/2 text-on-surface-variant" data-icon="search">search</span>
+<input class="w-full bg-transparent border-none border-b border-primary focus:ring-0 focus:border-primary pl-8 py-2 font-body-md text-body-md placeholder:text-outline text-primary uppercase" placeholder="Search by model, SKU, or movement..." type="text"/>
+</div>
+<div class="flex gap-4 w-full md:w-auto">
+<button class="flex items-center gap-2 font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors border border-outline px-4 py-2 uppercase">
+<span class="material-symbols-outlined text-sm" data-icon="filter_list">filter_list</span>
+                        Filter
+                    </button>
+<button class="flex items-center gap-2 font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors border border-outline px-4 py-2 uppercase">
+<span class="material-symbols-outlined text-sm" data-icon="sort">sort</span>
+                        Sort
+                    </button>
+</div>
+</div>
+<!-- Data Table (Bento/Card Hybrid for high-end feel) -->
+<div class="w-full overflow-x-auto pb-8">
+<table class="w-full text-left border-collapse min-w-[800px]">
+<thead>
+<tr class="border-b border-primary">
+<th class="py-4 px-4 font-label-caps text-label-caps text-outline uppercase tracking-widest">Timepiece</th>
+<th class="py-4 px-4 font-label-caps text-label-caps text-outline uppercase tracking-widest">SKU</th>
+<th class="py-4 px-4 font-label-caps text-label-caps text-outline uppercase tracking-widest">Movement</th>
+<th class="py-4 px-4 font-label-caps text-label-caps text-outline uppercase tracking-widest text-right">Price</th>
+<th class="py-4 px-4 font-label-caps text-label-caps text-outline uppercase tracking-widest">Stock</th>
+<th class="py-4 px-4 font-label-caps text-label-caps text-outline uppercase tracking-widest text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md">
+<!-- Row 1 -->
+<tr class="border-b border-outline-variant hover:bg-surface-container-low transition-colors group">
+<td class="py-4 px-4 flex items-center gap-4">
+<div class="w-16 h-16 bg-[#F5F5F5] border border-outline-variant flex-shrink-0">
+<img class="w-full h-full object-cover mix-blend-multiply" data-alt="A pristine top-down view of a classic stainless steel luxury chronograph watch with a black dial on a minimalist light grey background. The lighting highlights the polished metal and technical subdials, evoking mechanical precision and high-end horology." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCykDievwtxAV0A8HchsJlM3MT6HIxIfTXuXl6MKsJqGA-83qPdUAJT7E-ht2eZg91e_MgWmC4PlVyW7_Luh0GgWB7ogv5jxqPZS8qM4An_LoolvVsXTqL3_9rOR_uW6kn0IFltIqNu4EIOw5fK5h7iLm4Uji0HXF7YIwbo2X_LKtpx2GXMqc87LjmMC5VdFjzaTIRuJiT0ez_6YnQz_9PLwuODs3NmI1VpAzm-TD4NjryTJVTpjUJn"/>
+</div>
+<div>
+<span class="block font-headline-md text-headline-md text-primary text-base">Chronograph Master</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Heritage Collection</span>
+</div>
+</td>
+<td class="py-4 px-4 text-on-surface-variant font-mono text-sm">HCG-001-SS</td>
+<td class="py-4 px-4 text-primary">Automatic Calibre 400</td>
+<td class="py-4 px-4 font-price-display text-price-display text-primary text-right">$8,500</td>
+<td class="py-4 px-4">
+<span class="inline-flex items-center gap-1 font-label-caps text-label-caps text-primary">
+<span class="w-2 h-2 bg-primary block"></span> 12 Units
+                                </span>
+</td>
+<td class="py-4 px-4 text-right">
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 border border-primary text-primary hover:bg-primary hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="visibility">visibility</span>
+</button>
+<button class="p-2 border border-primary text-primary hover:bg-primary hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="edit">edit</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="border-b border-outline-variant hover:bg-surface-container-low transition-colors group">
+<td class="py-4 px-4 flex items-center gap-4">
+<div class="w-16 h-16 bg-[#F5F5F5] border border-outline-variant flex-shrink-0">
+<img class="w-full h-full object-cover mix-blend-multiply" data-alt="A close-up profile shot of an elegant 18k rose gold dress watch with a white enamel dial and brown alligator leather strap, presented against a stark white backdrop. The focus is sharp, emphasizing the flawless finishing of the precious metal and the texture of the leather." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyhhG94aLBD2k-e6RgaBarZ7M8YJOj7PqB-sakHhnRwebmpjRlfDTue-eLbsnx6z64Rj5hfZQmvdLkWZwyHGZmYyD4TK3frRRNfWqzuuW9sAxJ20kadO74lX-E3EtrqS9xxqLMJD3zWBcWWy1P-U7Gz1bERlnaQSYyYgknobEDwmnolL3qtIuNGAMUR0fLWOhQjJK8EKT4OodTcucAI-Lb3_XpPeCXMksyNbDzRplNbrECHnBB0bCi"/>
+</div>
+<div>
+<span class="block font-headline-md text-headline-md text-primary text-base">Elegance Tourbillon</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Grand Complication</span>
+</div>
+</td>
+<td class="py-4 px-4 text-on-surface-variant font-mono text-sm">EGT-882-RG</td>
+<td class="py-4 px-4 text-primary">Manual Wind Tourbillon</td>
+<td class="py-4 px-4 font-price-display text-price-display text-primary text-right">$45,000</td>
+<td class="py-4 px-4">
+<span class="inline-flex items-center gap-1 font-label-caps text-label-caps text-error">
+<span class="w-2 h-2 bg-error block"></span> 2 Units (Low)
+                                </span>
+</td>
+<td class="py-4 px-4 text-right">
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 border border-primary text-primary hover:bg-primary hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="visibility">visibility</span>
+</button>
+<button class="p-2 border border-primary text-primary hover:bg-primary hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="edit">edit</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="border-b border-outline-variant hover:bg-surface-container-low transition-colors group">
+<td class="py-4 px-4 flex items-center gap-4">
+<div class="w-16 h-16 bg-[#F5F5F5] border border-outline-variant flex-shrink-0">
+<img class="w-full h-full object-cover mix-blend-multiply" data-alt="A rugged, utilitarian professional dive watch in brushed titanium with a matte blue dial and chunky bezel, sitting flat on a pale grey studio background. The aesthetic is highly technical, durable, and ready for extreme depth, with crisp lighting defining its robust geometry." src="https://lh3.googleusercontent.com/aida-public/AB6AXuATHkAL-Cig32hZNhl8Z4RmlSA9rzsJgeMnTkiw20RrEehvL71S6CMSBxRYt2Z4AduOR71gdm5uUjlPVbAzdTSW4oQMflHaeliy39ZTrtiQYNetzrbB6k17543tLYZbFkxpg_KnUVWNhx8Ez9lnZIv2owqpaBGNXp2uU18FYrWxYjjd-v9MYwie9lcfOksxvaZhcRfjLt0ck2LL27ZOCuZmkuuhwT2vfSUs2qAbWdlBm6ddgCk_Ff2X"/>
+</div>
+<div>
+<span class="block font-headline-md text-headline-md text-primary text-base">Deep Sea Pro</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Aquatic Line</span>
+</div>
+</td>
+<td class="py-4 px-4 text-on-surface-variant font-mono text-sm">DSP-300-TI</td>
+<td class="py-4 px-4 text-primary">Automatic Calibre 200</td>
+<td class="py-4 px-4 font-price-display text-price-display text-primary text-right">$6,200</td>
+<td class="py-4 px-4">
+<span class="inline-flex items-center gap-1 font-label-caps text-label-caps text-primary">
+<span class="w-2 h-2 bg-primary block"></span> 24 Units
+                                </span>
+</td>
+<td class="py-4 px-4 text-right">
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 border border-primary text-primary hover:bg-primary hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="visibility">visibility</span>
+</button>
+<button class="p-2 border border-primary text-primary hover:bg-primary hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="edit">edit</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="flex justify-between items-center mt-8 border-t border-primary pt-6">
+<span class="font-label-caps text-label-caps text-on-surface-variant">SHOWING 1-3 OF 142 TIMEPIECES</span>
+<div class="flex gap-2">
+<button class="p-2 border border-outline text-outline hover:text-primary hover:border-primary transition-colors cursor-not-allowed opacity-50">
+<span class="material-symbols-outlined text-sm" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center border border-primary bg-primary text-on-primary font-label-caps text-label-caps">1</button>
+<button class="w-8 h-8 flex items-center justify-center border border-outline text-on-surface-variant hover:border-primary hover:text-primary font-label-caps text-label-caps transition-colors">2</button>
+<button class="w-8 h-8 flex items-center justify-center border border-outline text-on-surface-variant hover:border-primary hover:text-primary font-label-caps text-label-caps transition-colors">3</button>
+<button class="p-2 border border-outline text-primary hover:bg-primary hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full bottom-0 bg-surface-container-low dark:bg-surface-container-lowest border-t border-outline-variant dark:border-outline flat no shadows z-10 mt-auto">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin-desktop py-6 gap-4">
+<span class="font-label-caps text-label-caps text-primary">© 2024 HOROLOGIST PRECISION SYSTEMS</span>
+<div class="flex gap-6">
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary underline transition-all" href="#">System Status</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary underline transition-all" href="#">API Documentation</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary underline transition-all" href="#">Support</a>
+</div>
+</div>
+</footer>
+</div>
+<div class="fixed inset-0 z-50 hidden overflow-y-auto" id="new-timepiece-modal">
+<div class="fixed inset-0 bg-primary/40 backdrop-blur-sm" id="modal-backdrop"></div>
+<div class="relative min-h-screen flex items-center justify-center p-4 md:p-8">
+<div class="relative bg-surface w-full max-w-4xl border border-primary shadow-2xl flex flex-col">
+<button aria-label="Close modal" class="absolute top-6 right-6 text-primary hover:text-secondary transition-colors z-10" id="close-modal-icon-btn">
+<span class="material-symbols-outlined text-2xl" data-icon="close">close</span>
+</button>
+<div class="p-8 md:p-12 overflow-y-auto max-h-[80vh]">
+<div class="mb-12 pr-8">
+<h1 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary uppercase mb-2">New Timepiece Entry</h1>
+<p class="text-on-surface-variant font-body-md">Ensure absolute precision when cataloging new mechanical inventory.</p>
+</div>
+<form class="space-y-16">
+<!-- Section 1: Core Identifiers -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-x-gutter gap-y-8">
+<div class="md:col-span-4">
+<h3 class="font-label-caps text-label-caps text-primary uppercase border-b border-primary pb-2 mb-4">Core Identity</h3>
+<p class="text-sm text-on-surface-variant">Basic nomenclature and financial classification.</p>
+</div>
+<div class="md:col-span-8 space-y-8">
+<div class="relative">
+<label class="font-label-caps text-label-caps text-primary uppercase block mb-1" for="watch_name">Timepiece Name / Model</label>
+<input class="w-full bg-transparent border-none border-b border-primary focus:ring-0 focus:border-secondary focus:border-b-2 py-2 font-body-lg text-primary" id="watch_name" name="watch_name" placeholder="e.g. Royal Oak Offshore" required="" type="text"/>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="relative">
+<label class="font-label-caps text-label-caps text-primary uppercase block mb-1" for="reference_number">Reference Number</label>
+<input class="w-full bg-transparent border-none border-b border-primary focus:ring-0 focus:border-secondary focus:border-b-2 py-2 font-body-md font-mono text-primary" id="reference_number" name="reference_number" placeholder="e.g. Ref. 15400ST.OO.1220ST.01" required="" type="text"/>
+</div>
+<div class="relative">
+<label class="font-label-caps text-label-caps text-primary uppercase block mb-1" for="price_chf">Price (CHF)</label>
+<input class="w-full bg-transparent border-none border-b border-primary focus:ring-0 focus:border-secondary focus:border-b-2 py-2 font-price-display text-primary" id="price_chf" name="price_chf" placeholder="e.g. 24500" required="" type="number"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 2: Media Asset -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-x-gutter gap-y-8">
+<div class="md:col-span-4">
+<h3 class="font-label-caps text-label-caps text-primary uppercase border-b border-primary pb-2 mb-4">Visual Asset</h3>
+<p class="text-sm text-on-surface-variant">High-resolution frontal shot. Plain background required.</p>
+</div>
+<div class="md:col-span-8">
+<div class="border border-dashed border-primary hover:border-secondary hover:bg-surface-container-high w-full h-64 bg-surface-container-low flex flex-col items-center justify-center cursor-pointer relative overflow-hidden group transition-all">
+<input accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer z-10" id="image_upload" type="file"/>
+<div class="text-center group-hover:scale-105 transition-transform duration-300">
+<span class="material-symbols-outlined text-4xl text-on-surface-variant mb-2 block" data-icon="photo_camera">photo_camera</span>
+<span class="font-label-caps text-label-caps text-primary uppercase">Click or Drag Image Here</span>
+<p class="text-xs text-on-surface-variant mt-2 font-mono">PNG, JPG up to 10MB</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 3: Technical Specifications -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-x-gutter gap-y-8">
+<div class="md:col-span-4">
+<h3 class="font-label-caps text-label-caps text-primary uppercase border-b border-primary pb-2 mb-4">Technical Specs</h3>
+<p class="text-sm text-on-surface-variant">Detailed architectural and mechanical parameters.</p>
+</div>
+<div class="md:col-span-8">
+<!-- Spec Grid -->
+<div class="border-t border-primary">
+<!-- Row 1 -->
+<div class="grid grid-cols-1 sm:grid-cols-2 border-b border-primary">
+<div class="p-4 pl-0 sm:border-r border-primary border-b sm:border-b-0">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase block mb-2" for="movement">Movement Calibre</label>
+<input class="w-full bg-transparent border-none p-0 focus:ring-0 font-body-md text-primary" id="movement" name="movement" placeholder="e.g. Automatic Calibre 4302" type="text"/>
+</div>
+<div class="p-4 sm:pr-0">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase block mb-2" for="power_reserve">Power Reserve</label>
+<input class="w-full bg-transparent border-none p-0 focus:ring-0 font-body-md text-primary" id="power_reserve" name="power_reserve" placeholder="e.g. 70 Hours" type="text"/>
+</div>
+</div>
+<!-- Row 2 -->
+<div class="grid grid-cols-1 sm:grid-cols-2 border-b border-primary">
+<div class="p-4 pl-0 sm:border-r border-primary border-b sm:border-b-0">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase block mb-2" for="case_diameter">Case Diameter</label>
+<input class="w-full bg-transparent border-none p-0 focus:ring-0 font-body-md text-primary" id="case_diameter" name="case_diameter" placeholder="e.g. 41 mm" type="text"/>
+</div>
+<div class="p-4 sm:pr-0">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase block mb-2" for="case_material">Case Material</label>
+<input class="w-full bg-transparent border-none p-0 focus:ring-0 font-body-md text-primary" id="case_material" name="case_material" placeholder="e.g. Stainless Steel" type="text"/>
+</div>
+</div>
+<!-- Row 3 -->
+<div class="grid grid-cols-1 sm:grid-cols-2 border-b border-primary">
+<div class="p-4 pl-0 sm:border-r border-primary border-b sm:border-b-0">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase block mb-2" for="water_resistance">Water Resistance</label>
+<input class="w-full bg-transparent border-none p-0 focus:ring-0 font-body-md text-primary" id="water_resistance" name="water_resistance" placeholder="e.g. 50 m" type="text"/>
+</div>
+<div class="p-4 sm:pr-0">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase block mb-2" for="crystal_type">Crystal Type</label>
+<input class="w-full bg-transparent border-none p-0 focus:ring-0 font-body-md text-primary" id="crystal_type" name="crystal_type" placeholder="e.g. Glareproofed Sapphire" type="text"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 4: Editorial Description -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-x-gutter gap-y-8 pb-12">
+<div class="md:col-span-4">
+<h3 class="font-label-caps text-label-caps text-primary uppercase border-b border-primary pb-2 mb-4">Editorial Copy</h3>
+<p class="text-sm text-on-surface-variant">Marketing narrative and historical context.</p>
+</div>
+<div class="md:col-span-8">
+<div class="relative h-full">
+<label class="font-label-caps text-label-caps text-primary uppercase block mb-2 sr-only" for="description">Detailed Description</label>
+<textarea class="w-full bg-surface-container-lowest border border-primary p-4 font-body-md text-primary focus:outline-none focus:border-secondary transition-colors resize-y min-h-[150px]" id="description" name="description" placeholder="Enter detailed description here..." rows="6"></textarea>
+</div>
+</div>
+</section>
+</form>
+</div>
+<div class="border-t border-primary p-6 flex flex-col md:flex-row justify-between items-center gap-4 bg-surface">
+<button class="font-label-caps text-label-caps uppercase text-error hover:underline flex items-center gap-2" id="close-modal-btn" type="button">
+<span class="material-symbols-outlined text-sm" data-icon="delete">delete</span> Discard
+        </button>
+<div class="flex gap-4 w-full md:w-auto">
+<button class="flex-1 md:flex-none px-8 py-3 border border-primary font-label-caps text-label-caps uppercase text-primary hover:bg-surface-container-high transition-colors" type="button">Save as Draft</button>
+<button class="flex-1 md:flex-none px-8 py-3 bg-primary text-on-primary font-label-caps text-label-caps uppercase hover:bg-secondary hover:text-on-secondary transition-colors" type="submit">Publish to Store</button>
+</div>
+</div>
+</div>
+</div>
+</div><script>
+  (function() {
+    const modal = document.getElementById('new-timepiece-modal');
+    const openBtn = document.getElementById('open-modal-btn');
+    const closeBtn = document.getElementById('close-modal-btn');
+    const closeIconBtn = document.getElementById('close-modal-icon-btn');
+    const backdrop = document.getElementById('modal-backdrop');
+
+    const toggleModal = () => {
+      modal.classList.toggle('hidden');
+      document.body.classList.toggle('overflow-hidden');
+    };
+
+    if (openBtn) openBtn.addEventListener('click', toggleModal);
+    if (closeBtn) closeBtn.addEventListener('click', toggleModal);
+    if (closeIconBtn) closeIconBtn.addEventListener('click', toggleModal);
+    if (backdrop) backdrop.addEventListener('click', toggleModal);
+  })();
+</script></body></html>

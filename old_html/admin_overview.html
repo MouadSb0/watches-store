@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Horologist Admin Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Montserrat:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline": "#747878",
+                        "tertiary-fixed-dim": "#c6c6c7",
+                        "primary-container": "#1c1b1b",
+                        "on-primary-fixed": "#1c1b1b",
+                        "surface-bright": "#fbf9f8",
+                        "on-primary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "secondary": "#775a19",
+                        "tertiary-fixed": "#e2e2e2",
+                        "on-tertiary-container": "#838484",
+                        "on-surface-variant": "#444748",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "surface-container-low": "#f5f3f3",
+                        "secondary-fixed": "#ffdea5",
+                        "surface-container-highest": "#e4e2e2",
+                        "tertiary": "#000000",
+                        "background": "#fbf9f8",
+                        "surface-container-high": "#e9e8e7",
+                        "surface-container-lowest": "#ffffff",
+                        "primary": "#000000",
+                        "secondary-container": "#fed488",
+                        "error": "#ba1a1a",
+                        "inverse-surface": "#303031",
+                        "outline-variant": "#c4c7c7",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "on-error-container": "#93000a",
+                        "tertiary-container": "#1a1c1c",
+                        "surface-variant": "#e4e2e2",
+                        "secondary-fixed-dim": "#e9c176",
+                        "on-secondary-fixed-variant": "#5d4201",
+                        "on-primary-fixed-variant": "#474746",
+                        "on-error": "#ffffff",
+                        "primary-fixed": "#e5e2e1",
+                        "on-secondary-fixed": "#261900",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-container": "#858383",
+                        "surface-dim": "#dbdad9",
+                        "on-background": "#1b1c1c",
+                        "on-secondary-container": "#785a1a",
+                        "surface": "#fbf9f8",
+                        "inverse-primary": "#c8c6c5",
+                        "surface-tint": "#5f5e5e",
+                        "surface-container": "#efeded",
+                        "on-surface": "#1b1c1c",
+                        "primary-fixed-dim": "#c8c6c5",
+                        "inverse-on-surface": "#f2f0f0",
+                        "on-secondary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0rem",
+                        "lg": "0rem",
+                        "xl": "0rem",
+                        "full": "0rem"
+                    },
+                    "spacing": {
+                        "section-padding": "120px",
+                        "margin-mobile": "20px",
+                        "container-max": "1440px",
+                        "margin-desktop": "64px",
+                        "gutter": "24px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "price-display": ["Montserrat"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Montserrat"],
+                        "label-caps": ["Inter"],
+                        "headline-md": ["Montserrat"],
+                        "display-xl": ["Montserrat"],
+                        "headline-lg-mobile": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "price-display": ["20px", { "lineHeight": "1", "letterSpacing": "0", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-lg": ["40px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.2em", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "letterSpacing": "0.1em", "fontWeight": "600" }],
+                        "display-xl": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["32px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "700" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Razor sharp luxury aesthetic */
+        * { border-radius: 0 !important; }
+        
+        /* Simple CSS line chart styling for visual representation */
+        .chart-container {
+            position: relative;
+            height: 300px;
+            width: 100%;
+            background: linear-gradient(to top, var(--surface-container-highest) 1px, transparent 1px);
+            background-size: 100% 50px;
+        }
+        .chart-line {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .chart-point {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background-color: var(--primary);
+            border-radius: 50% !important; /* Exception for chart dots */
+            transform: translate(-50%, 50%);
+        }
+    </style>
+</head>
+<body class="bg-background pt-20 overflow-x-hidden text-on-background font-body-md min-h-screen flex selection:bg-secondary selection:text-on-secondary">
+<!-- Navigation Drawer -->
+<aside class="bg-surface text-primary font-label-caps text-label-caps h-screen w-64 fixed left-0 top-0 border-r border-primary flex flex-col z-20 hidden md:flex">
+<div class="p-6 border-b border-primary">
+<h1 class="font-headline-md text-headline-md text-primary tracking-widest">HOROLOGIST ADMIN</h1>
+</div>
+<div class="p-6 border-b border-primary flex items-center gap-4">
+<div class="w-12 h-12 bg-surface-container-high border border-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined fill text-2xl">person</span>
+</div>
+<div>
+<div class="font-bold">System Administrator</div>
+<div class="text-on-surface-variant mt-1">Luxury Watch Group</div>
+<div class="text-on-surface-variant opacity-70 mt-1">Master Access</div>
+</div>
+</div>
+<nav class="hidden md:flex flex-col h-screen w-64 left-0 top-0 fixed border-r border-gray-800 bg-black py-8 space-y-4 z-40">
+<!-- Header -->
+<div class="px-gutter mb-12">
+<img src="imgs/logo_axios.png" alt="Axios Logo" class="h-30">
+</div>
+<!-- Navigation Links -->
+<div class="flex-1 space-y-2">
+<!-- Items mapped from JSON -->
+<a class="flex items-center space-x-4 px-gutter py-3 bg-white text-black font-bold hover:text-white hover:bg-gray-800 transition-all duration-200 ease-in-out font-label-caps text-label-caps cursor-pointer" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Analytics</span>
+</a>
+<a class="flex items-center space-x-4 px-gutter py-3 text-gray-300 hover:text-white hover:bg-gray-800 transition-all duration-200 ease-in-out font-label-caps text-label-caps cursor-pointer" href="#">
+<span class="material-symbols-outlined" data-icon="watch">watch</span>
+<span>Products</span>
+</a>
+<a class="flex items-center space-x-4 px-gutter py-3 text-gray-300 hover:text-white hover:bg-gray-800 transition-all duration-200 ease-in-out font-label-caps text-label-caps cursor-pointer" href="#">
+<span class="material-symbols-outlined" data-icon="local_shipping">local_shipping</span>
+<span>Orders</span>
+</a>
+<!-- Contextual Active Tab (Settings is a proxy for admin operations like Customer Management) -->
+<a class="flex items-center space-x-4 px-gutter py-3 text-gray-300 transition-all duration-200 ease-in-out font-label-caps text-label-caps cursor-pointer" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span>Customers</span>
+</a>
+<a class="flex items-center space-x-4 px-gutter py-3 text-gray-300 font-bold transition-all duration-200 ease-in-out font-label-caps text-label-caps cursor-pointer" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+</div>
+</nav>
+</aside>
+<!-- Main Content Wrapper -->
+<main class="flex-1 md:ml-64 flex flex-col min-h-screen">
+<!-- TopAppBar (Mobile Only) -->
+<header class="w-full top-0 absolute flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 bg-black border-b border-gray-800">
+<!-- Leading (Mobile menu icon, hidden on desktop since drawer is fixed) -->
+<div aria-label="Menu" class="md:hidden flex items-center cursor-pointer active:opacity-80 text-white hover:bg-white/10 transition-colors p-2">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</div>
+<!-- Headline / Brand -->
+<div class="flex-1 md:flex-none flex md:block justify-center">
+</div>
+<!-- Trailing (Account Icon) -->
+<div aria-label="Account" class="flex items-center cursor-pointer active:opacity-80 text-white hover:bg-white/10 transition-colors p-2">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</div>
+</header>
+<!-- Canvas -->
+<div class="flex-1 p-margin-mobile md:p-margin-desktop max-w-container-max mx-auto w-full">
+<!-- Page Header -->
+<div class="mb-12 flex justify-between items-end border-b border-primary pb-4">
+<div>
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary uppercase">Dashboard Overview</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">Executive Summary &amp; Performance Metrics</p>
+</div>
+<div class="hidden md:flex gap-4">
+<button class="px-6 py-3 border border-primary text-primary font-label-caps text-label-caps hover:bg-surface-container-high transition-colors uppercase">
+                        Export Report
+                    </button>
+<button class="px-6 py-3 bg-primary text-on-primary font-label-caps text-label-caps hover:bg-secondary transition-colors uppercase">
+                        New Product
+                    </button>
+</div>
+</div>
+<!-- KPIs (Bento Grid Style) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-section-padding">
+<!-- Total Revenue -->
+<div class="border border-primary p-6 bg-surface-container-lowest relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10">
+<span class="material-symbols-outlined text-[100px]">account_balance</span>
+</div>
+<div class="font-label-caps text-label-caps text-on-surface-variant mb-4 uppercase">Total Revenue (YTD)</div>
+<div class="font-price-display text-price-display text-4xl mb-2">$4,250,000</div>
+<div class="font-body-md text-body-md text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+                        +12.5% vs Last Year
+                    </div>
+</div>
+<!-- Monthly Sales -->
+<div class="border border-primary p-6 bg-surface-container-lowest relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10">
+<span class="material-symbols-outlined text-[100px]">watch</span>
+</div>
+<div class="font-label-caps text-label-caps text-on-surface-variant mb-4 uppercase">Monthly Sales</div>
+<div class="font-price-display text-price-display text-4xl mb-2">128 Units</div>
+<div class="font-body-md text-body-md text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+                        +5.2% vs Last Month
+                    </div>
+</div>
+<!-- Average Order Value -->
+<div class="border border-primary p-6 bg-surface-container-lowest relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10">
+<span class="material-symbols-outlined text-[100px]">receipt_long</span>
+</div>
+<div class="font-label-caps text-label-caps text-on-surface-variant mb-4 uppercase">Average Order Value</div>
+<div class="font-price-display text-price-display text-4xl mb-2">$33,203</div>
+<div class="font-body-md text-body-md text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">trending_flat</span>
+                        Consistent
+                    </div>
+</div>
+</div>
+<!-- Charts and Transactions Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-section-padding">
+<!-- Sales Trend Chart Area -->
+<div class="lg:col-span-2">
+<div class="border-b border-primary pb-4 mb-8 flex justify-between items-center">
+<h3 class="font-headline-md text-headline-md uppercase">Sales Trends (30 Days)</h3>
+<div class="flex gap-4 font-label-caps text-label-caps">
+<button class="text-primary border-b border-primary pb-1">Revenue</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors pb-1">Units</button>
+</div>
+</div>
+<div class="border border-primary bg-surface-container-lowest p-6">
+<div class="chart-container">
+<!-- Y Axis Labels -->
+<div class="absolute left-0 top-0 h-full flex flex-col justify-between text-xs text-on-surface-variant pb-6 pr-4 border-r border-outline-variant z-10 bg-surface-container-lowest">
+<span>$150k</span>
+<span>$100k</span>
+<span>$50k</span>
+<span>$0</span>
+</div>
+<!-- X Axis Labels -->
+<div class="absolute bottom-0 left-12 right-0 flex justify-between text-xs text-on-surface-variant pt-2 border-t border-outline-variant">
+<span>Oct 1</span>
+<span>Oct 8</span>
+<span>Oct 15</span>
+<span>Oct 22</span>
+<span>Oct 29</span>
+</div>
+<!-- Simulated Line Chart SVG -->
+<div class="absolute inset-0 ml-12 mb-6">
+<svg class="stroke-primary fill-none stroke-2" height="100%" preserveaspectratio="none" viewbox="0 0 1000 250" width="100%">
+<path d="M0,200 L100,180 L200,220 L300,150 L400,160 L500,80 L600,110 L700,50 L800,90 L900,40 L1000,20"></path>
+<!-- Points -->
+<circle class="fill-primary" cx="0" cy="200" r="4"></circle>
+<circle class="fill-primary" cx="100" cy="180" r="4"></circle>
+<circle class="fill-primary" cx="200" cy="220" r="4"></circle>
+<circle class="fill-primary" cx="300" cy="150" r="4"></circle>
+<circle class="fill-primary" cx="400" cy="160" r="4"></circle>
+<circle class="fill-primary" cx="500" cy="80" r="4"></circle>
+<circle class="fill-primary" cx="600" cy="110" r="4"></circle>
+<circle class="fill-primary" cx="700" cy="50" r="4"></circle>
+<circle class="fill-primary" cx="800" cy="90" r="4"></circle>
+<circle class="fill-primary" cx="900" cy="40" r="4"></circle>
+<circle class="fill-primary" cx="1000" cy="20" r="4"></circle>
+</svg>
+</div>
+</div>
+</div>
+</div>
+<!-- Recent Transactions -->
+<div class="lg:col-span-1">
+<div class="border-b border-primary pb-4 mb-8 flex justify-between items-center">
+<h3 class="font-headline-md text-headline-md uppercase">Recent Transactions</h3>
+<a class="font-label-caps text-label-caps text-primary hover:underline uppercase" href="#">View All</a>
+</div>
+<div class="flex flex-col gap-4">
+<!-- Transaction 1 -->
+<div class="border border-outline-variant p-4 hover:border-primary transition-colors bg-surface-container-lowest">
+<div class="flex justify-between items-start mb-2">
+<div class="font-label-caps text-label-caps uppercase">#ORD-9932</div>
+<span class="px-2 py-1 bg-surface-container-highest text-primary font-label-caps text-[10px] uppercase border border-primary">Completed</span>
+</div>
+<div class="font-body-md text-body-md font-semibold mb-1">Chronograph Perpetual</div>
+<div class="flex justify-between items-end">
+<div class="font-body-md text-sm text-on-surface-variant">A. Sterling</div>
+<div class="font-price-display text-price-display text-lg">$85,000</div>
+</div>
+</div>
+<!-- Transaction 2 -->
+<div class="border border-outline-variant p-4 hover:border-primary transition-colors bg-surface-container-lowest">
+<div class="flex justify-between items-start mb-2">
+<div class="font-label-caps text-label-caps uppercase">#ORD-9931</div>
+<span class="px-2 py-1 bg-secondary-fixed text-on-secondary-fixed font-label-caps text-[10px] uppercase border border-secondary">Pending</span>
+</div>
+<div class="font-body-md text-body-md font-semibold mb-1">Tourbillon Skeleton</div>
+<div class="flex justify-between items-end">
+<div class="font-body-md text-sm text-on-surface-variant">M. Rossi</div>
+<div class="font-price-display text-price-display text-lg">$142,500</div>
+</div>
+</div>
+<!-- Transaction 3 -->
+<div class="border border-outline-variant p-4 hover:border-primary transition-colors bg-surface-container-lowest">
+<div class="flex justify-between items-start mb-2">
+<div class="font-label-caps text-label-caps uppercase">#ORD-9930</div>
+<span class="px-2 py-1 bg-surface-container-highest text-primary font-label-caps text-[10px] uppercase border border-primary">Completed</span>
+</div>
+<div class="font-body-md text-body-md font-semibold mb-1">Diver Pro 300m</div>
+<div class="flex justify-between items-end">
+<div class="font-body-md text-sm text-on-surface-variant">E. Chen</div>
+<div class="font-price-display text-price-display text-lg">$12,400</div>
+</div>
+</div>
+<!-- Transaction 4 -->
+<div class="border border-outline-variant p-4 hover:border-primary transition-colors bg-surface-container-lowest opacity-70">
+<div class="flex justify-between items-start mb-2">
+<div class="font-label-caps text-label-caps uppercase">#ORD-9929</div>
+<span class="px-2 py-1 bg-error-container text-on-error-container font-label-caps text-[10px] uppercase border border-error">Cancelled</span>
+</div>
+<div class="font-body-md text-body-md font-semibold mb-1">Classic Dress Gold</div>
+<div class="flex justify-between items-end">
+<div class="font-body-md text-sm text-on-surface-variant">J. Doe</div>
+<div class="font-price-display text-price-display text-lg line-through">$28,000</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="bg-surface-container-low text-on-surface-variant font-label-caps text-label-caps w-full bottom-0 border-t border-outline-variant flex justify-between items-center px-margin-desktop py-6 mt-auto flex-col md:flex-row gap-4">
+<div class="text-primary font-bold">© 2024 HOROLOGIST PRECISION SYSTEMS</div>
+<div class="flex gap-6">
+<a class="text-on-surface-variant hover:text-primary underline transition-all cursor-pointer" href="#">System Status</a>
+<a class="text-on-surface-variant hover:text-primary underline transition-all cursor-pointer" href="#">API Documentation</a>
+<a class="text-on-surface-variant hover:text-primary underline transition-all cursor-pointer" href="#">Support</a>
+</div>
+</footer>
+</main>
+</body></html>

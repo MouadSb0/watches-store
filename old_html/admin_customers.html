@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VANGO CHRONOS OPS - COLLECTOR REGISTRY</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Montserrat and Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Montserrat:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "background": "#fbf9f8",
+                        "inverse-surface": "#303031",
+                        "on-background": "#1b1c1c",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed-variant": "#5d4201",
+                        "on-secondary-container": "#785a1a",
+                        "outline": "#747878",
+                        "primary-fixed": "#e5e2e1",
+                        "secondary-fixed": "#ffdea5",
+                        "tertiary": "#000000",
+                        "on-primary-container": "#858383",
+                        "on-tertiary-container": "#838484",
+                        "on-primary-fixed": "#1c1b1b",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "on-surface-variant": "#444748",
+                        "on-error": "#ffffff",
+                        "secondary-fixed-dim": "#e9c176",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-highest": "#e4e2e2",
+                        "primary-container": "#1c1b1b",
+                        "surface-dim": "#dbdad9",
+                        "inverse-primary": "#c8c6c5",
+                        "tertiary-fixed-dim": "#c6c6c7",
+                        "surface-container": "#efeded",
+                        "on-surface": "#1b1c1c",
+                        "surface-variant": "#e4e2e2",
+                        "surface": "#fbf9f8",
+                        "primary-fixed-dim": "#c8c6c5",
+                        "surface-container-low": "#f5f3f3",
+                        "tertiary-container": "#1a1c1c",
+                        "error-container": "#ffdad6",
+                        "surface-container-high": "#e9e8e7",
+                        "surface-bright": "#fbf9f8",
+                        "primary": "#000000",
+                        "on-primary-fixed-variant": "#474746",
+                        "tertiary-fixed": "#e2e2e2",
+                        "on-secondary": "#ffffff",
+                        "surface-tint": "#5f5e5e",
+                        "secondary": "#775a19",
+                        "outline-variant": "#c4c7c7",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed": "#261900",
+                        "inverse-on-surface": "#f2f0f0",
+                        "secondary-container": "#fed488"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "64px",
+                        "section-padding": "120px",
+                        "container-max": "1440px",
+                        "gutter": "24px",
+                        "margin-mobile": "20px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Montserrat"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Montserrat"],
+                        "display-xl": ["Montserrat"],
+                        "headline-lg": ["Montserrat"],
+                        "price-display": ["Montserrat"],
+                        "label-caps": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["32px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "letterSpacing": "0.1em", "fontWeight": "600" }],
+                        "display-xl": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg": ["40px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "price-display": ["20px", { "lineHeight": "1", "letterSpacing": "0", "fontWeight": "500" }],
+                        "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.2em", "fontWeight": "600" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        input:focus { outline: none; }
+        
+        /* Razor sharp structural styling to mirror luxury aesthetic */
+        * { border-radius: 0 !important; }
+        
+        .table-row-hover:hover {
+            background-color: #f5f3f3; /* surface-container-low */
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex antialiased">
+<!-- Navigation Drawer (Desktop Left Shell) -->
+<nav class="hidden md:flex flex-col h-screen w-64 left-0 top-0 fixed border-r border-gray-800 bg-black py-8 space-y-4 z-40">
+<!-- Header -->
+<div class="px-gutter mb-12">
+<img src="imgs/logo_axios.png" alt="Axios Logo" class="h-30">
+</div>
+<!-- Navigation Links -->
+<div class="flex-1 space-y-2">
+<!-- Items mapped from JSON -->
+<a class="flex items-center space-x-4 px-gutter py-3 text-gray-300 hover:text-white hover:bg-gray-800 transition-all duration-200 ease-in-out font-label-caps text-label-caps cursor-pointer" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Analytics</span>
+</a>
+<a class="flex items-center space-x-4 px-gutter py-3 text-gray-300 hover:text-white hover:bg-gray-800 transition-all duration-200 ease-in-out font-label-caps text-label-caps cursor-pointer" href="#">
+<span class="material-symbols-outlined" data-icon="watch">watch</span>
+<span>Products</span>
+</a>
+<a class="flex items-center space-x-4 px-gutter py-3 text-gray-300 hover:text-white hover:bg-gray-800 transition-all duration-200 ease-in-out font-label-caps text-label-caps cursor-pointer" href="#">
+<span class="material-symbols-outlined" data-icon="local_shipping">local_shipping</span>
+<span>Orders</span>
+</a>
+<!-- Contextual Active Tab (Settings is a proxy for admin operations like Customer Management) -->
+<a class="flex items-center space-x-4 px-gutter py-3 bg-white text-black font-bold transition-all duration-200 ease-in-out font-label-caps text-label-caps cursor-pointer" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span>Customers</span>
+</a>
+<a class="flex items-center space-x-4 px-gutter py-3 text-gray-300 font-bold transition-all duration-200 ease-in-out font-label-caps text-label-caps cursor-pointer" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col min-w-0 md:ml-64 bg-background">
+<!-- TopAppBar (Top Shell) -->
+<header class="w-full top-0 sticky flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 z-50 bg-black border-b border-gray-800">
+<!-- Leading (Mobile menu icon, hidden on desktop since drawer is fixed) -->
+<div aria-label="Menu" class="md:hidden flex items-center cursor-pointer active:opacity-80 text-white hover:bg-white/10 transition-colors p-2">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</div>
+<!-- Headline / Brand -->
+<div class="flex-1 md:flex-none flex md:block justify-center">
+</div>
+<!-- Trailing (Account Icon) -->
+<div aria-label="Account" class="flex items-center cursor-pointer active:opacity-80 text-white hover:bg-white/10 transition-colors p-2">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</div>
+</header>
+<!-- Content Area -->
+<div class="flex-1 w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-section-padding space-y-16">
+<!-- Page Header -->
+<section class="space-y-6">
+<h2 class="font-display-xl text-display-xl md:text-[64px] text-headline-lg-mobile text-primary uppercase">COLLECTOR REGISTRY</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+                    Manage the global network of VANGO collectors and their acquisition history.
+                </p>
+</section>
+<!-- Controls (Search & Filters) -->
+<section class="flex flex-col md:flex-row justify-between items-start md:items-end gap-8 border-b border-outline pb-6">
+<!-- Search -->
+<div class="w-full md:w-96">
+<label class="sr-only" for="collectorSearch">Search by Name or Email</label>
+<div class="relative w-full border-b border-primary flex items-center pb-2 focus-within:border-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-outline mr-3">search</span>
+<input class="w-full bg-transparent border-none p-0 font-body-md text-on-surface placeholder-outline focus:ring-0" id="collectorSearch" placeholder="Search by Name or Email" type="text"/>
+</div>
+</div>
+<!-- Filter Chips -->
+<div class="flex flex-wrap gap-4 items-center">
+<span class="font-label-caps text-label-caps text-outline uppercase mr-2 tracking-widest">TIER:</span>
+<button class="px-6 py-2 border border-primary text-primary font-label-caps text-label-caps uppercase hover:bg-surface-container-high transition-colors">
+                        All
+                    </button>
+<button class="px-6 py-2 bg-primary text-on-primary font-label-caps text-label-caps uppercase hover:bg-[#333] transition-colors relative flex items-center gap-2">
+<div class="w-2 h-2 bg-secondary-container rounded-full"></div>
+                        Platinum
+                    </button>
+<button class="px-6 py-2 border border-primary text-primary font-label-caps text-label-caps uppercase hover:bg-surface-container-high transition-colors flex items-center gap-2">
+<div class="w-2 h-2 bg-secondary-fixed rounded-full"></div>
+                        Gold
+                    </button>
+<button class="px-6 py-2 border border-primary text-primary font-label-caps text-label-caps uppercase hover:bg-surface-container-high transition-colors flex items-center gap-2">
+<div class="w-2 h-2 bg-outline-variant rounded-full"></div>
+                        Silver
+                    </button>
+</div>
+</section>
+<!-- Data Table / List -->
+<section class="w-full overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b-2 border-primary">
+<th class="py-6 px-4 font-label-caps text-label-caps tracking-widest text-outline uppercase w-1/4">Collector Name</th>
+<th class="py-6 px-4 font-label-caps text-label-caps tracking-widest text-outline uppercase w-1/4">Status</th>
+<th class="py-6 px-4 font-label-caps text-label-caps tracking-widest text-outline uppercase w-1/4">Last Acquisition</th>
+<th class="py-6 px-4 font-label-caps text-label-caps tracking-widest text-outline uppercase text-right w-1/4">Total Orders</th>
+</tr>
+</thead>
+<tbody class="font-body-md">
+<!-- Row 1 -->
+<tr class="border-b border-outline-variant table-row-hover transition-colors cursor-pointer group">
+<td class="py-8 px-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-surface-container-high flex items-center justify-center font-headline-md text-headline-md text-primary">
+                                        AS
+                                    </div>
+<div class="flex flex-col">
+<span class="font-headline-md text-primary group-hover:underline decoration-1 underline-offset-4">Alexander Sterling</span>
+<span class="text-sm text-on-surface-variant font-body-md mt-1">a.sterling@example.com</span>
+</div>
+</div>
+</td>
+<td class="py-8 px-4">
+<div class="inline-flex items-center gap-2 border border-primary px-3 py-1">
+<div class="w-2 h-2 bg-secondary-container"></div>
+<span class="font-label-caps text-label-caps text-primary">PLATINUM</span>
+</div>
+</td>
+<td class="py-8 px-4 text-on-surface font-semibold">
+                                Axiom Meridian
+                                <div class="text-sm font-normal text-on-surface-variant mt-1">Ref. 4920-A</div>
+</td>
+<td class="py-8 px-4 text-right font-headline-md text-headline-md text-primary">
+                                14
+                            </td>
+</tr>
+<!-- Row 2 -->
+<tr class="border-b border-outline-variant table-row-hover transition-colors cursor-pointer group">
+<td class="py-8 px-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-surface-container-high flex items-center justify-center font-headline-md text-headline-md text-primary">
+                                        EV
+                                    </div>
+<div class="flex flex-col">
+<span class="font-headline-md text-primary group-hover:underline decoration-1 underline-offset-4">Elena Vance</span>
+<span class="text-sm text-on-surface-variant font-body-md mt-1">elena.v@example.com</span>
+</div>
+</div>
+</td>
+<td class="py-8 px-4">
+<div class="inline-flex items-center gap-2 border border-primary px-3 py-1">
+<div class="w-2 h-2 bg-secondary-fixed"></div>
+<span class="font-label-caps text-label-caps text-primary">GOLD</span>
+</div>
+</td>
+<td class="py-8 px-4 text-on-surface font-semibold">
+                                Chronos Tourbillon
+                                <div class="text-sm font-normal text-on-surface-variant mt-1">Ref. 9912-T</div>
+</td>
+<td class="py-8 px-4 text-right font-headline-md text-headline-md text-primary">
+                                5
+                            </td>
+</tr>
+<!-- Row 3 -->
+<tr class="border-b border-outline-variant table-row-hover transition-colors cursor-pointer group">
+<td class="py-8 px-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-surface-container-high flex items-center justify-center font-headline-md text-headline-md text-primary">
+                                        MR
+                                    </div>
+<div class="flex flex-col">
+<span class="font-headline-md text-primary group-hover:underline decoration-1 underline-offset-4">Marcus Reed</span>
+<span class="text-sm text-on-surface-variant font-body-md mt-1">mreed88@example.com</span>
+</div>
+</div>
+</td>
+<td class="py-8 px-4">
+<div class="inline-flex items-center gap-2 border border-primary px-3 py-1">
+<div class="w-2 h-2 bg-secondary-container"></div>
+<span class="font-label-caps text-label-caps text-primary">PLATINUM</span>
+</div>
+</td>
+<td class="py-8 px-4 text-on-surface font-semibold">
+                                Zenith Perpetual
+                                <div class="text-sm font-normal text-on-surface-variant mt-1">Ref. 1024-P</div>
+</td>
+<td class="py-8 px-4 text-right font-headline-md text-headline-md text-primary">
+                                22
+                            </td>
+</tr>
+<!-- Row 4 -->
+<tr class="border-b border-outline-variant table-row-hover transition-colors cursor-pointer group">
+<td class="py-8 px-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-surface-container-high flex items-center justify-center font-headline-md text-headline-md text-primary">
+                                        SL
+                                    </div>
+<div class="flex flex-col">
+<span class="font-headline-md text-primary group-hover:underline decoration-1 underline-offset-4">Sophia Lin</span>
+<span class="text-sm text-on-surface-variant font-body-md mt-1">slin.design@example.com</span>
+</div>
+</div>
+</td>
+<td class="py-8 px-4">
+<div class="inline-flex items-center gap-2 border border-outline-variant px-3 py-1">
+<div class="w-2 h-2 bg-outline-variant"></div>
+<span class="font-label-caps text-label-caps text-on-surface-variant">SILVER</span>
+</div>
+</td>
+<td class="py-8 px-4 text-on-surface font-semibold">
+                                Vanguard Minimalist
+                                <div class="text-sm font-normal text-on-surface-variant mt-1">Ref. 3301-M</div>
+</td>
+<td class="py-8 px-4 text-right font-headline-md text-headline-md text-primary">
+                                1
+                            </td>
+</tr>
+</tbody>
+</table>
+</section>
+<!-- Pagination / Show More -->
+<section class="flex justify-center pt-8">
+<button class="border-b border-primary pb-1 font-label-caps text-label-caps tracking-[0.2em] uppercase text-primary hover:text-on-surface-variant hover:border-on-surface-variant transition-colors flex items-center gap-2">
+                    LOAD MORE RECORDS
+                    <span class="material-symbols-outlined text-[16px]" data-icon="arrow_downward">arrow_downward</span>
+</button>
+</section>
+</div>
+<!-- Footer -->
+<footer class="w-full bottom-0 flex justify-between items-center px-margin-desktop py-8 mt-auto border-t border-primary bg-surface">
+<div class="font-label-caps text-label-caps text-on-surface-variant">
+                © 2024 VANGO HOROLOGICAL PRECISION
+            </div>
+<div class="flex space-x-8">
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors cursor-pointer" href="#">Privacy Policy</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors cursor-pointer" href="#">Terms of Service</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors cursor-pointer" href="#">Support</a>
+</div>
+</footer>
+</main>
+</body></html>
