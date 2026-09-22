@@ -1,5 +1,10 @@
-# Tell Linguist to ignore HTML files when detecting the repo language
+# Ignore HTML so it doesn't dominate the language bar
 *.html linguist-detectable=false
 
-# Ensure JavaScript files are counted
+# Make sure JS and JSX are counted
 *.js linguist-detectable=true
+*.jsx linguist-detectable=true
+
+# If you're using TypeScript
+*.tsx linguist-detectable=true
+*.ts linguist-detectable=true
