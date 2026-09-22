@@ -1,5 +1,92 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
+
+/* ── New Arrivals Carousel ───────────────────────────────────────── */
+const newArrivalsItems = [
+  { name: 'ECLIPSE GMT',      price: '$3,800', img: 'img_3d.png'  },
+  { name: 'NOIR DIVER',       price: '$4,200', img: 'img_3d1.jpeg'},
+  { name: 'CELESTIA MOON',    price: '$9,500', img: 'img_3d2.png' },
+  { name: 'APEX CARBON',      price: '$6,700', img: 'img_3d.png'  },
+  { name: 'ROYAL PERPETUAL',  price: '$11,200',img: 'img_3d1.jpeg'},
+  { name: 'ONYX SKELETON',    price: '$8,900', img: 'img_3d2.png' },
+  { name: 'CHRONOS ULTRA',    price: '$5,500', img: 'img_3d.png'  },
+  { name: 'GRAND COMPLICATION', price: '$18,000', img: 'img_3d1.jpeg'},
+];
+
+function NewArrivalsCarousel({ base }) {
+  const scrollRef = useRef(null);
+
+  const scroll = (dir) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const cardWidth = el.firstChild?.offsetWidth || 280;
+    el.scrollBy({ left: dir * (cardWidth + 24), behavior: 'smooth' });
+  };
+
+  return (
+    <section className="py-section-padding max-w-container-max mx-auto w-full px-0">
+      {/* Header */}
+      <div className="text-center mb-12 px-margin-mobile md:px-margin-desktop">
+        <p className="font-label-caps text-label-caps text-[#775a19] mb-2 tracking-widest font-semibold">JUST ARRIVED</p>
+        <h2 className="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary uppercase font-bold text-3xl md:text-4xl">New Arrivals</h2>
+      </div>
+
+      {/* Carousel Wrapper */}
+      <div className="relative px-margin-mobile md:px-margin-desktop">
+
+        {/* Left Arrow */}
+        <button
+          onClick={() => scroll(-1)}
+          aria-label="Scroll Left"
+          className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-11 h-11 flex items-center justify-center bg-white border border-[#e4e2e2] shadow-lg hover:bg-[#775a19] hover:border-[#775a19] hover:text-white text-[#1b1c1c] transition-all duration-200 rounded-full cursor-pointer"
+          style={{ transform: 'translate(-40%, -50%)' }}
+        >
+          <span className="material-symbols-outlined text-[20px]">chevron_left</span>
+        </button>
+
+        {/* Scrollable Cards Track */}
+        <div
+          ref={scrollRef}
+          className="flex gap-6 overflow-x-auto scroll-smooth pb-4"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        >
+          {newArrivalsItems.map((item, i) => (
+            <Link
+              to="/product_details"
+              key={i}
+              className="group bg-white border border-[#e4e2e2] hover:shadow-xl transition-all rounded-sm flex-shrink-0"
+              style={{ width: 'calc(25% - 18px)', minWidth: '220px' }}
+            >
+              <div className="bg-[#f5f3f3] aspect-square overflow-hidden flex items-center justify-center p-4">
+                <img
+                  src={`${base}imgs/${item.img}`}
+                  alt={item.name}
+                  className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+              <div className="p-4">
+                <p className="font-label-caps text-label-caps text-[#747878] mb-1 text-[10px] tracking-widest">VANGO</p>
+                <h4 className="font-headline-md text-base text-primary mb-2 font-bold">{item.name}</h4>
+                <span className="font-price-display text-price-display text-primary text-base font-bold">{item.price}</span>
+              </div>
+            </Link>
+          ))}
+        </div>
+
+        {/* Right Arrow */}
+        <button
+          onClick={() => scroll(1)}
+          aria-label="Scroll Right"
+          className="absolute right-0 top-1/2 z-10 w-11 h-11 flex items-center justify-center bg-white border border-[#e4e2e2] shadow-lg hover:bg-[#775a19] hover:border-[#775a19] hover:text-white text-[#1b1c1c] transition-all duration-200 rounded-full cursor-pointer"
+          style={{ transform: 'translate(40%, -50%)' }}
+        >
+          <span className="material-symbols-outlined text-[20px]">chevron_right</span>
+        </button>
+      </div>
+    </section>
+  );
+}
+
 
 export default function Home() {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -230,29 +317,7 @@ export default function Home() {
       </section>
 
       {/* New Arrivals */}
-      <section className="py-section-padding px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto w-full">
-        <div className="text-center mb-12">
-          <p className="font-label-caps text-label-caps text-[#775a19] mb-2 tracking-widest font-semibold">JUST ARRIVED</p>
-          <h2 className="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary uppercase font-bold text-3xl md:text-4xl">New Arrivals</h2>
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          {[
-            { name: 'ECLIPSE GMT', price: '$3,800', img: `${base}imgs/img_3d.png` },
-            { name: 'NOIR DIVER', price: '$4,200', img: `${base}imgs/img_3d1.jpeg` },
-            { name: 'CELESTIA MOON', price: '$9,500', img: `${base}imgs/img_3d2.png` },
-            { name: 'APEX CARBON', price: '$6,700', img: `${base}imgs/img_3d.png` },
-          ].map((item, i) => (
-            <Link to="/product_details" key={i} className="group bg-white p-4 border border-[#e4e2e2] hover:shadow-xl transition-all rounded-sm">
-              <div className="bg-[#f5f3f3] aspect-square mb-4 overflow-hidden flex items-center justify-center p-4">
-                <img src={item.img} alt={item.name} className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" />
-              </div>
-              <p className="font-label-caps text-label-caps text-[#747878] mb-1 text-[10px] tracking-widest">VANGO</p>
-              <h4 className="font-headline-md text-base text-primary mb-2 font-bold">{item.name}</h4>
-              <span className="font-price-display text-price-display text-primary text-base font-bold">{item.price}</span>
-            </Link>
-          ))}
-        </div>
-      </section>
+      <NewArrivalsCarousel base={base} />
 
       {/* Testimonials */}
       <section className="py-section-padding px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto w-full">
