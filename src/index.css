@@ -26,3 +26,24 @@ html, body {
     'opsz' 24;
   vertical-align: middle;
 }
+
+/* Smooth Infinite Marquee Left-to-Right */
+@keyframes marqueeLeftToRight {
+  0% {
+    transform: translate3d(-50%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0%, 0, 0);
+  }
+}
+
+.animate-marquee-ltr {
+  display: flex;
+  width: max-content;
+  animation: marqueeLeftToRight 28s linear infinite;
+  will-change: transform;
+}
+
+.marquee-container:hover .animate-marquee-ltr {
+  animation-play-state: paused;
+}

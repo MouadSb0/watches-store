@@ -120,11 +120,37 @@ export default function Home() {
       </section>
 
       {/* Marquee / Brand Ticker */}
-      <section className="bg-secondary py-4 overflow-hidden w-full bg-[#775a19]">
-        <div className="animate-marquee flex gap-12 whitespace-nowrap">
-          {['FREE WORLDWIDE SHIPPING', 'SWISS MADE', '2 YEAR WARRANTY', 'AUTHENTIC LUXURY', 'EXCLUSIVE DESIGNS', 'PREMIUM MATERIALS', 'FREE WORLDWIDE SHIPPING', 'SWISS MADE', '2 YEAR WARRANTY', 'AUTHENTIC LUXURY', 'EXCLUSIVE DESIGNS', 'PREMIUM MATERIALS'].map((item, i) => (
-            <span key={i} className="font-label-caps text-label-caps text-white tracking-widest flex items-center gap-4 text-xs font-semibold">
-              {item} <span className="text-white/60">◆</span>
+      <section className="py-4 overflow-hidden w-full bg-[#775a19] shadow-inner marquee-container select-none">
+        <div className="animate-marquee-ltr flex items-center whitespace-nowrap">
+          {[
+            'FREE WORLDWIDE SHIPPING',
+            'SWISS MADE',
+            '2 YEAR WARRANTY',
+            'AUTHENTIC LUXURY',
+            'EXCLUSIVE DESIGNS',
+            'PREMIUM MATERIALS',
+            'FREE WORLDWIDE SHIPPING',
+            'SWISS MADE',
+            '2 YEAR WARRANTY',
+            'AUTHENTIC LUXURY',
+            'EXCLUSIVE DESIGNS',
+            'PREMIUM MATERIALS',
+            'FREE WORLDWIDE SHIPPING',
+            'SWISS MADE',
+            '2 YEAR WARRANTY',
+            'AUTHENTIC LUXURY',
+            'EXCLUSIVE DESIGNS',
+            'PREMIUM MATERIALS',
+            'FREE WORLDWIDE SHIPPING',
+            'SWISS MADE',
+            '2 YEAR WARRANTY',
+            'AUTHENTIC LUXURY',
+            'EXCLUSIVE DESIGNS',
+            'PREMIUM MATERIALS',
+          ].map((item, i) => (
+            <span key={i} className="font-label-caps text-label-caps text-white tracking-widest flex items-center gap-6 px-6 text-xs font-semibold">
+              <span>{item}</span>
+              <span className="text-white/60 text-[10px]">◆</span>
             </span>
           ))}
         </div>
