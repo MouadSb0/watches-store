@@ -1,6 +1,6 @@
-
 import React from 'react';
-import { HashRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
 import AdminCustomers from './pages/AdminCustomers';
 import AdminManagement from './pages/AdminManagement';
 import AdminOrders from './pages/AdminOrders';
@@ -20,11 +20,11 @@ import Register from './pages/Register';
 import ResetPass from './pages/ResetPass';
 import Support from './pages/Support';
 
-
 function App() {
   return (
     <Router>
       <Routes>
+        <Route path="/" element={<Home />} />
         <Route path="/admin_customers" element={<AdminCustomers />} />
         <Route path="/admin_management" element={<AdminManagement />} />
         <Route path="/admin_orders" element={<AdminOrders />} />
@@ -43,18 +43,6 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/reset_pass" element={<ResetPass />} />
         <Route path="/support" element={<Support />} />
-
-        <Route path="/" element={
-            <div style={{padding: '20px'}}>
-                <h1>Home Page</h1>
-                <p>Welcome to the React App.</p>
-                <ul>
-                    {["/admin_customers","/admin_management","/admin_orders","/admin_overview","/all_collections","/cart","/checkout","/contact","/favorites","/forgot_pass","/jornal","/login","/our_story","/product_details","/profile","/register","/reset_pass","/support"].map(route => (
-                        <li key={route}><Link to={route}>{route}</Link></li>
-                    ))}
-                </ul>
-            </div>
-        } />
       </Routes>
     </Router>
   );
