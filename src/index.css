@@ -1,3 +1,6 @@
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
 /* Clean CSS Reset for Watches Store */
 * {
   box-sizing: border-box;
