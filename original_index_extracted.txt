@@ -1,0 +1,108 @@
+Created At: 2026-09-22T11:48:46Z
+Completed At: 2026-09-22T11:48:46Z
+File Path: `file:///c:/Users/pc/Desktop/watches_store/projet/index.html`
+Total Lines: 485
+Total Bytes: 42306
+Showing lines 1 to 100
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: <!DOCTYPE html><html class="light" lang="en"><head>
+2: <meta charset="utf-8">
+3: <meta content="width=device-width, initial-scale=1.0" name="viewport">
+4: <title>VANGO - Luxury Watches</title>
+5: <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+6: <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+7: <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Montserrat:wght@500;600;700&amp;display=swap" rel="stylesheet">
+8: <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+9: <script id="tailwind-config">
+10:         tailwind.config = {
+11:             darkMode: "class",
+12:             theme: {
+13:                 extend: {
+14:                     "colors": {
+15:                         "surface-container-low": "#f5f3f3",
+16:                         "on-primary": "#ffffff",
+17:                         "surface-tint": "#5f5e5e",
+18:                         "surface-container-high": "#e9e8e7",
+19:                         "inverse-primary": "#c8c6c5",
+20:                         "on-primary-fixed": "#1c1b1b",
+21:                         "on-secondary-fixed-variant": "#5d4201",
+22:                         "background": "#fbf9f8",
+23:                         "surface-container": "#efeded",
+24:                         "secondary": "#775a19",
+25:                         "on-primary-container": "#858383",
+26:                         "on-primary-fixed-variant": "#474746",
+27:                         "on-surface": "#1b1c1c",
+28:                         "surface-bright": "#fbf9f8",
+29:                         "tertiary-fixed-dim": "#c6c6c7",
+30:                         "outline": "#747878",
+31:                         "primary": "#000000",
+32:                         "primary-container": "#1c1b1b",
+33:                         "on-tertiary-container": "#838484",
+34:                         "on-error-container": "#93000a",
+35:                         "on-tertiary-fixed": "#1a1c1c",
+36:                         "on-error": "#ffffff",
+37:                         "inverse-surface": "#303031",
+38:                         "error": "#ba1a1a",
+39:                         "on-secondary-container": "#785a1a",
+40:                         "error-container": "#ffdad6",
+41:                         "inverse-on-surface": "#f2f0f0",
+42:                         "surface-container-highest": "#e4e2e2",
+43:                         "on-surface-variant": "#444748",
+44:                         "primary-fixed-dim": "#c8c6c5",
+45:                         "surface-dim": "#dbdad9",
+46:                         "on-background": "#1b1c1c",
+47:                         "secondary-fixed-dim": "#e9c176",
+48:                         "primary-fixed": "#e5e2e1",
+49:                         "tertiary-container": "#1a1c1c",
+50:                         "secondary-fixed": "#ffdea5",
+51:                         "tertiary": "#000000",
+52:                         "outline-variant": "#c4c7c7",
+53:                         "surface-container-lowest": "#ffffff",
+54:                         "surface-variant": "#e4e2e2",
+55:                         "tertiary-fixed": "#e2e2e2",
+56:                         "surface": "#fbf9f8",
+57:                         "on-tertiary": "#ffffff",
+58:                         "on-secondary-fixed": "#261900",
+59:                         "on-secondary": "#ffffff",
+60:                         "on-tertiary-fixed-variant": "#454747",
+61:                         "secondary-container": "#fed488"
+62:                     },
+63:                     "borderRadius": {
+64:                         "DEFAULT": "0rem",
+65:                         "lg": "0rem",
+66:                         "xl": "0rem",
+67:                         "full": "0rem"
+68:                     },
+69:                     "spacing": {
+70:                         "container-max": "1440px",
+71:                         "margin-desktop": "64px",
+72:                         "unit": "8px",
+73:                         "section-padding": "120px",
+74:                         "margin-mobile": "20px",
+75:                         "gutter": "24px"
+76:                     },
+77:                     "fontFamily": {
+78:                         "display-xl": ["Montserrat"],
+79:                         "body-md": ["Inter"],
+80:                         "headline-lg-mobile": ["Montserrat"],
+81:                         "headline-md": ["Montserrat"],
+82:                         "price-display": ["Montserrat"],
+83:                         "headline-lg": ["Montserrat"],
+84:                         "label-caps": ["Inter"],
+85:                         "body-lg": ["Inter"]
+86:                     },
+87:                     "fontSize": {
+88:                         "display-xl": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+89:                         "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+90:                         "headline-lg-mobile": ["32px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "700" }],
+91:                         "headline-md": ["24px", { "lineHeight": "1.3", "letterSpacing": "0.1em", "fontWeight": "600" }],
+92:                         "price-display": ["20px", { "lineHeight": "1", "letterSpacing": "0", "fontWeight": "500" }],
+93:                         "headline-lg": ["40px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "700" }],
+94:                         "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.2em", "fontWeight": "600" }],
+95:                         "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }]
+96:                     },
+97:                     "animation": {
+98:                         "marquee-right": "marquee-right 25s linear infinite"
+99:                     },
+100:                     "keyframes": {
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

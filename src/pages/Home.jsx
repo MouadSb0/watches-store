@@ -102,7 +102,14 @@ export default function Home() {
             </div>
           </div>
           <div className="flex-1 flex items-center justify-center">
-            <img src={`${base}imgs/img_3d.png`} alt="Luxury Watch" className="max-h-[460px] object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.8)]" />
+            <div className="relative w-full max-w-[460px] aspect-[3/4] rounded-2xl overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.85)] border border-white/15 group">
+              <img 
+                src={`${base}imgs/hero_watch.jpg`} 
+                alt="VANGO Luxury Watch Collection" 
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none"></div>
+            </div>
           </div>
         </div>
         {/* Scroll indicator */}
@@ -136,13 +143,13 @@ export default function Home() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
-            { name: 'ROYAL CHRONOGRAPH', price: '$8,500', label: 'BESTSELLER', img: `${base}imgs/img_3d.png` },
-            { name: 'HERITAGE AUTOMATIC', price: '$5,200', label: 'NEW ARRIVAL', img: `${base}imgs/img_3d1.jpeg` },
-            { name: 'SIGNATURE TOURBILLON', price: '$24,000', label: 'LIMITED EDITION', img: `${base}imgs/img_3d2.png` },
+            { name: 'ROYAL CHRONOGRAPH', price: '$8,500', label: 'BESTSELLER', img: `${base}imgs/hero_watch_box.jpg` },
+            { name: 'HERITAGE AUTOMATIC', price: '$5,200', label: 'NEW ARRIVAL', img: `${base}imgs/hero_watch_satin.jpg` },
+            { name: 'SIGNATURE TOURBILLON', price: '$24,000', label: 'LIMITED EDITION', img: `${base}imgs/hero_watch_stack.jpg` },
           ].map((product, i) => (
             <Link to="/product_details" key={i} className="group relative bg-[#f5f3f3] overflow-hidden cursor-pointer rounded-sm border border-[#e4e2e2] hover:border-[#775a19] transition-all">
-              <div className="relative overflow-hidden aspect-square bg-[#efeded] flex items-center justify-center p-6">
-                <img src={product.img} alt={product.name} className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" />
+              <div className="relative overflow-hidden aspect-square bg-[#efeded] flex items-center justify-center p-0">
+                <img src={product.img} alt={product.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 <span className="absolute top-4 left-4 bg-[#775a19] text-white font-label-caps text-label-caps px-3 py-1 text-[10px] tracking-widest">{product.label}</span>
                 <button className="absolute bottom-4 right-4 bg-black text-white p-2 opacity-0 group-hover:opacity-100 transition-opacity rounded-full shadow-md">
                   <span className="material-symbols-outlined text-[20px]">favorite_border</span>
